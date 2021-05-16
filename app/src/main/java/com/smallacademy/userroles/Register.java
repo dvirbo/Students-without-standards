@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -48,7 +49,24 @@ public class Register extends AppCompatActivity {
         isTeacherBox = findViewById(R.id.isTeacher);
         isStudentBox = findViewById(R.id.isStudent);
 
-        //
+        //Logics
+        isStudentBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (compoundButton.isChecked()){
+                    isTeacherBox.setChecked(false);
+                }
+            }
+        });
+
+        isTeacherBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (compoundButton.isChecked()){
+                    isStudentBox.setChecked(false);
+                }
+            }
+        });
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,12 +94,27 @@ public class Register extends AppCompatActivity {
                             userInfo.put("UserEmail",email.getText().toString());
                             userInfo.put("PhoneNumber",phone.getText().toString());
                             //specify admin
-                            userInfo.put("isUser","1");
+                            //userInfo.put("isUser","1");
+                            if (isTeacherBox.isChecked()){
+                                userInfo.put("isAdmin","1");
+                            }
+                            if (isStudentBox.isChecked()){
+                                userInfo.put("isUser","1");
+                            }
 
                             df.set(userInfo);
 
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                            finish();
+                            if (isTeacherBox.isChecked()){
+                                startActivity(new Intent(getApplicationContext(),Admin.class));
+                                finish();
+                            }
+                            if (isStudentBox.isChecked()){
+                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                finish();
+                            }
+
+                            /*startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            finish();*/
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
