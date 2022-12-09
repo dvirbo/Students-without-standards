@@ -42,55 +42,44 @@ public class Login extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         gotoRegister = findViewById(R.id.gotoRegister);
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkField(email);
-                checkField(password);
+        loginBtn.setOnClickListener(v -> {
+            checkField(email);
+            checkField(password);
 
-                if (valid){
-                    fAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                        @Override
-                        public void onSuccess(AuthResult authResult) {
-                            Toast.makeText(Login.this,"Loggedin Successfully",Toast.LENGTH_SHORT).show();
-                            checkUserAccessLevel(Objects.requireNonNull(authResult.getUser()).getUid());
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Login.this,"Error",Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+            if (valid){
+                fAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        Toast.makeText(Login.this,"Logged Successfully",Toast.LENGTH_SHORT).show();
+                        checkUserAccessLevel(Objects.requireNonNull(authResult.getUser()).getUid());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Login.this,"Error",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
-        gotoRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Register.class));
-            }
-        });
+        gotoRegister.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),Register.class)));
     }
 
     private void checkUserAccessLevel(String uid) {
         DocumentReference df = fStore.collection("Users").document(uid);
         //extract data from the document
-        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Log.d("TAG","onSuccess" + documentSnapshot.getData());
-                //identify the access level
-                if (documentSnapshot.getString("isAdmin") != null){
-                    //user is admin
-                    startActivity(new Intent(getApplicationContext(),Admin.class));
-                    finish();
-                }
-                if (documentSnapshot.getString("isUser") != null){
-                    //user is user
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    finish();
-                }
+        df.get().addOnSuccessListener(documentSnapshot -> {
+            Log.d("TAG","onSuccess" + documentSnapshot.getData());
+            //identify the access level
+            if (documentSnapshot.getString("isAdmin") != null){
+                //user is admin
+                startActivity(new Intent(getApplicationContext(),Admin.class));
+                finish();
+            }
+            if (documentSnapshot.getString("isUser") != null){
+                //user is user
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                finish();
             }
         });
     }
@@ -110,24 +99,18 @@ public class Login extends AppCompatActivity {
         super.onStart();
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
             DocumentReference df = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
-            df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (documentSnapshot.getString("isAdmin") != null){
-                        startActivity(new Intent(getApplicationContext(),Admin.class));
-                        finish();
-                    }
-                    if (documentSnapshot.getString("isUser") != null){
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        finish();
-                    }
+            df.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.getString("isAdmin") != null){
+                    startActivity(new Intent(getApplicationContext(),Admin.class));
+                    finish();
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(getApplicationContext(),Login.class));
+                if (documentSnapshot.getString("isUser") != null){
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
                 }
+            }).addOnFailureListener(e -> {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(),Login.class));
             });
         }
     }

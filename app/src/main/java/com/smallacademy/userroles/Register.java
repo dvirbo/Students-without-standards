@@ -24,7 +24,7 @@ public class Register extends AppCompatActivity {
     boolean valid = true;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
-    CheckBox isTeacherBox,isStudentBox;
+    CheckBox isAdminBox,isStudentBox;
 
     @Override
 
@@ -42,17 +42,17 @@ public class Register extends AppCompatActivity {
         registerBtn = findViewById(R.id.registerBtn);
         goToLogin = findViewById(R.id.gotoLogin);
 
-        isTeacherBox = findViewById(R.id.isAdmin);
+        isAdminBox = findViewById(R.id.isAdmin);
         isStudentBox = findViewById(R.id.isStudent);
 
         //Logics
         isStudentBox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             if (compoundButton.isChecked()){
-                isTeacherBox.setChecked(false);
+                isAdminBox.setChecked(false);
             }
         });
 
-        isTeacherBox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+        isAdminBox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             if (compoundButton.isChecked()){
                 isStudentBox.setChecked(false);
             }
@@ -65,7 +65,7 @@ public class Register extends AppCompatActivity {
             checkField(phone);
 
             //checkbox confirmation
-            if (!(isTeacherBox.isChecked() || isStudentBox.isChecked())){
+            if (!(isAdminBox.isChecked() || isStudentBox.isChecked())){
                 Toast.makeText(Register.this,"Select the Account Type",Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -81,7 +81,7 @@ public class Register extends AppCompatActivity {
                     userInfo.put("UserEmail",email.getText().toString());
                     userInfo.put("PhoneNumber",phone.getText().toString());
                     //specify admin
-                    if (isTeacherBox.isChecked()){
+                    if (isAdminBox.isChecked()){
                         userInfo.put("isAdmin","1");
                     }
                     if (isStudentBox.isChecked()){
@@ -90,7 +90,7 @@ public class Register extends AppCompatActivity {
 
                     df.set(userInfo);
 
-                    if (isTeacherBox.isChecked()){
+                    if (isAdminBox.isChecked()){
                         startActivity(new Intent(getApplicationContext(),Admin.class));
                         finish();
                     }
