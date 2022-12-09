@@ -20,6 +20,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity {
+
     EditText email,password;
     Button loginBtn,gotoRegister;
     boolean valid = true;

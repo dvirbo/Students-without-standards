@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/UserRoles.iml" filepath="$PROJECT_DIR$/.idea/modules/UserRoles.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/UserRoles.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/UserRoles.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/UserRoles.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/UserRoles.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/UserRoles.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/UserRoles.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/UserRoles.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/UserRoles.app.unitTest.iml" />
     </modules>
   </component>
 </project>
