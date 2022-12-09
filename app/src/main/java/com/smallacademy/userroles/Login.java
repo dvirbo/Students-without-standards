@@ -19,6 +19,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Objects;
+
 public class Login extends AppCompatActivity {
 
     EditText email,password;
@@ -51,7 +53,7 @@ public class Login extends AppCompatActivity {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             Toast.makeText(Login.this,"Loggedin Successfully",Toast.LENGTH_SHORT).show();
-                            checkUserAccessLevel(authResult.getUser().getUid());
+                            checkUserAccessLevel(Objects.requireNonNull(authResult.getUser()).getUid());
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -93,7 +95,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    public boolean checkField(EditText textField){
+    public void checkField(EditText textField){
         if(textField.getText().toString().isEmpty()){
             textField.setError("Error");
             valid = false;
@@ -101,7 +103,6 @@ public class Login extends AppCompatActivity {
             valid = true;
         }
 
-        return valid;
     }
 
     @Override

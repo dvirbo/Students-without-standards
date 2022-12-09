@@ -1,33 +1,121 @@
 {
   "project_info": {
-    "project_number": "972766434699",
-    "project_id": "userroles-4282c",
-    "storage_bucket": "userroles-4282c.appspot.com"
+    "project_number": "988914754294",
+    "firebase_url": "https://students-without-standards-default-rtdb.firebaseio.com",
+    "project_id": "students-without-standards",
+    "storage_bucket": "students-without-standards.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:972766434699:android:a34db3ed9dcfccd7a28b8e",
+        "mobilesdk_app_id": "1:988914754294:android:eceac3cfccf6d6ac7e02d7",
         "android_client_info": {
-          "package_name": "com.smallacademy.userroles"
+          "package_name": "com.example.studentwithoutstandards"
         }
       },
       "oauth_client": [
         {
-          "client_id": "972766434699-05bp2ii44gj1ntvgm0dqbb15nsbu3e8o.apps.googleusercontent.com",
+          "client_id": "988914754294-a4rgtd8dn3e6ges5qdqg3mssg5bajk6o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCwYS_j40ia0eI8GaSRQ1kg-9J3ox-6BFU"
+          "current_key": "AIzaSyAtTbi8ir5HJ5hRpAzkbBVMhtB6Ah0tlkI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "972766434699-05bp2ii44gj1ntvgm0dqbb15nsbu3e8o.apps.googleusercontent.com",
+              "client_id": "988914754294-a4rgtd8dn3e6ges5qdqg3mssg5bajk6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988914754294:android:dd67f9c55b1ae88d7e02d7",
+        "android_client_info": {
+          "package_name": "com.example.sws_new"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988914754294-a4rgtd8dn3e6ges5qdqg3mssg5bajk6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtTbi8ir5HJ5hRpAzkbBVMhtB6Ah0tlkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988914754294-a4rgtd8dn3e6ges5qdqg3mssg5bajk6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988914754294:android:15978c6bfb35a7027e02d7",
+        "android_client_info": {
+          "package_name": "com.myappcompany.ohad.studentswithoutstandards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988914754294-a4rgtd8dn3e6ges5qdqg3mssg5bajk6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtTbi8ir5HJ5hRpAzkbBVMhtB6Ah0tlkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988914754294-a4rgtd8dn3e6ges5qdqg3mssg5bajk6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988914754294:android:eafcfd0b43f2c0867e02d7",
+        "android_client_info": {
+          "package_name": "com.smallacademy.userroles"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988914754294-a4rgtd8dn3e6ges5qdqg3mssg5bajk6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtTbi8ir5HJ5hRpAzkbBVMhtB6Ah0tlkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988914754294-a4rgtd8dn3e6ges5qdqg3mssg5bajk6o.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
