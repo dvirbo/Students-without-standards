@@ -16,9 +16,9 @@ public class Admin extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
     }
 
-    public void logoutAdmin(View view){
+    public void logoutAdmin(View view) {
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),Login.class));
+        startActivity(new Intent(getApplicationContext(), Login.class));
         finish();
     }
 }
