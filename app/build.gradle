@@ -5,7 +5,7 @@ android {
     compileSdkVersion 33
 
     defaultConfig {
-        applicationId "com.smallacademy.userroles"
+        applicationId 'com.se.sws'
         minSdkVersion 23
         targetSdkVersion 33
         versionCode 1
@@ -20,7 +20,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'com.smallacademy.userroles'
+    namespace 'com.se.sws'
 }
 
 dependencies {

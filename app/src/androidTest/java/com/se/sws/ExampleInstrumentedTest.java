@@ -1,4 +1,4 @@
-package com.smallacademy.userroles;
+package com.se.sws;
 
 import android.content.Context;
 

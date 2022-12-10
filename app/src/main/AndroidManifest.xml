@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.se.sws">
 
     <application
         android:allowBackup="true"
@@ -8,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin"></activity>
-        <activity android:name=".Login"
+        <activity android:name="com.se.sws.Admin"></activity>
+        <activity android:name="com.se.sws.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register" />
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.se.sws.Register" />
+        <activity android:name="com.se.sws.MainActivity" />
     </application>
 
 </manifest>

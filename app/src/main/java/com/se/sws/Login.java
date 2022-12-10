@@ -1,4 +1,4 @@
-package com.smallacademy.userroles;
+package com.se.sws;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
