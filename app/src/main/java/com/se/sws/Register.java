@@ -91,7 +91,7 @@ public class Register extends AppCompatActivity {
                     df.set(userInfo);
 
                     if (isAdminBox.isChecked()){
-                        startActivity(new Intent(getApplicationContext(),Admin.class));
+                        startActivity(new Intent(getApplicationContext(), AdminPanel.class));
                         finish();
                     }
                     if (isStudentBox.isChecked()){

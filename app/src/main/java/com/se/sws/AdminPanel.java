@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Admin extends AppCompatActivity {
+public class AdminPanel extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

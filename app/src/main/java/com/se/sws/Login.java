@@ -71,12 +71,12 @@ public class Login extends AppCompatActivity {
             //identify the access level
             if (documentSnapshot.getString("isAdmin") != null){
                 //user is admin
-                startActivity(new Intent(getApplicationContext(),Admin.class));
+                startActivity(new Intent(getApplicationContext(), AdminPanel.class));
                 finish();
             }
             if (documentSnapshot.getString("isUser") != null){
                 //user is user
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(),Universities.class)); // Go to Universities panel
                 finish();
             }
         });
@@ -99,7 +99,7 @@ public class Login extends AppCompatActivity {
             DocumentReference df = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
             df.get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.getString("isAdmin") != null){
-                    startActivity(new Intent(getApplicationContext(),Admin.class));
+                    startActivity(new Intent(getApplicationContext(), AdminPanel.class));
                     finish();
                 }
                 if (documentSnapshot.getString("isUser") != null){
