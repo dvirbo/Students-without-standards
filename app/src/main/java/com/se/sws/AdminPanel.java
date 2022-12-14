@@ -21,4 +21,23 @@ public class AdminPanel extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), Login.class));
         finish();
     }
+
+    public void adminMessages(View view){
+        // messaging system via Firebase code here <<<<<
+        startActivity(new Intent(getApplicationContext(),AdminMessages.class));
+    }
+
+    public void getStats(View view){
+        // messaging system via Firebase code here <<<<<
+        startActivity(new Intent(getApplicationContext(),Stats.class));
+    }
+
+    /**
+     * addItem -> once clicked will direct us to Universities class
+     * @param view
+     */
+    public void addItem(View view){
+        // messaging system via Firebase code here <<<<<
+        startActivity(new Intent(getApplicationContext(),Universities.class));
+    }
 }

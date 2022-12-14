@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <activity
             android:name=".boards.TechnionUni"
             android:exported="false">
@@ -60,7 +61,8 @@
         </activity>
         <activity
             android:name=".Categories"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".Universities">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

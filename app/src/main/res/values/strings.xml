@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name"></string>
+    <string name="stats">Stats</string>
+    <string name="messages">Messages</string>
+    <string name="remove_products">Remove products</string>
+    <string name="add_products">Add Products</string>
+    <string name="logout">Logout</string>
+    <string name="type_additional_description_here">type_additional_description_here</string>
+    <string name="item_description">item_description</string>
+    <string name="item_title">item_title</string>
+    <string name="item_name">Item name</string>
+    <string name="description_of_item">Description of item</string>
+    <string name="universities">Universities</string>
+    <string name="ariel">Ariel</string>
+    <string name="tel_aviv">TEL-AVIV</string>
+    <string name="ben_gurion">BEN-GURION</string>
+    <string name="technion">Technion</string>
 </resources>

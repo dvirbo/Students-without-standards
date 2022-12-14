@@ -19,8 +19,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
+
 public class Login extends AppCompatActivity {
 
+    public boolean flag = true;
     EditText email,password;
     Button loginBtn,gotoRegister;
     boolean valid = true;
@@ -71,12 +73,17 @@ public class Login extends AppCompatActivity {
             //identify the access level
             if (documentSnapshot.getString("isAdmin") != null){
                 //user is admin
-                startActivity(new Intent(getApplicationContext(), AdminPanel.class));
+                Intent intent = new Intent(getApplicationContext(), Universities.class);
+                intent.putExtra("isAdmin",flag);
+                startActivity(intent);
                 finish();
             }
             if (documentSnapshot.getString("isUser") != null){
+                flag = false;
                 //user is user
-                startActivity(new Intent(getApplicationContext(),Universities.class)); // Go to Universities panel
+                Intent intent = new Intent(getApplicationContext(), Universities.class);
+                intent.putExtra("isAdmin",flag);
+                startActivity(intent);
                 finish();
             }
         });
@@ -99,11 +106,15 @@ public class Login extends AppCompatActivity {
             DocumentReference df = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
             df.get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.getString("isAdmin") != null){
-                    startActivity(new Intent(getApplicationContext(), AdminPanel.class));
+                    Intent intent = new Intent(getApplicationContext(), Universities.class);
+                    intent.putExtra("isAdmin",flag);
+                    startActivity(intent);
                     finish();
                 }
                 if (documentSnapshot.getString("isUser") != null){
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    Intent intent = new Intent(getApplicationContext(), Universities.class);
+                    intent.putExtra("isAdmin",flag);
+                    startActivity(intent);
                     finish();
                 }
             }).addOnFailureListener(e -> {
@@ -112,4 +123,5 @@ public class Login extends AppCompatActivity {
             });
         }
     }
+
 }
