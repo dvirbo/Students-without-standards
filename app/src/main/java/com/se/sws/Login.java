@@ -65,6 +65,11 @@ public class Login extends AppCompatActivity {
         gotoRegister.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),Register.class)));
     }
 
+    /**
+     * This method check if the user is sigh as admin or student
+     * if admin -> show admin page
+     * else -> show user page
+     */
     private void checkUserAccessLevel(String uid) {
         DocumentReference df = fStore.collection("Users").document(uid);
         //extract data from the document
@@ -99,6 +104,11 @@ public class Login extends AppCompatActivity {
 
     }
 
+    /**
+     * This method check if the user is already sigh to the app
+     * if true -> connect user to app and he don't need to verify -> move to admin/main class
+     * else, move to login class
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -112,6 +122,7 @@ public class Login extends AppCompatActivity {
                     finish();
                 }
                 if (documentSnapshot.getString("isUser") != null){
+                    flag = false;
                     Intent intent = new Intent(getApplicationContext(), Universities.class);
                     intent.putExtra("isAdmin",flag);
                     startActivity(intent);

@@ -66,5 +66,15 @@
         android:textSize="20sp"
         android:backgroundTint="@color/colorIcons"/>
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="165dp"
+        android:text="@string/logout"
+        android:onClick="logoutAdmin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ben_gurion_uni" />
 </LinearLayout>
 
