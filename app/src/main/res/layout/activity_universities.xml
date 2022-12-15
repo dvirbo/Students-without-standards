@@ -38,11 +38,11 @@
             android:text="@string/ariel"
             android:textStyle="italic"
             android:textSize="20sp"
-            android:onClick="arielUniversity"
+            android:onClick="UniversitiesBoard"
             />
 
         <Button
-            android:id="@+id/movetotlvfac"
+            android:id="@+id/tel_aviv_uni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50sp"
@@ -52,17 +52,18 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/movetobgnfac"
+            android:id="@+id/ben_gurion_uni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50sp"
             android:padding="30dp"
             android:text="@string/ben_gurion"
             android:textStyle="italic"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:onClick="UniversitiesBoard"/>
 
         <Button
-            android:id="@+id/movetotechfac"
+            android:id="@+id/technion_uni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50sp"
@@ -72,7 +73,7 @@
             android:textSize="20sp"/>
 
         <Button
-            android:id="@+id/movetotreichman"
+            android:id="@+id/reichman_uni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50sp"
@@ -81,7 +82,7 @@
             android:textStyle="italic"
             android:textSize="20sp"/>
         <Button
-            android:id="@+id/movetoHaifa"
+            android:id="@+id/haifa_uni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50sp"

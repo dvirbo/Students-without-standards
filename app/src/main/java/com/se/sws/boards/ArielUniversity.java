@@ -32,11 +32,12 @@ public class ArielUniversity extends AppCompatActivity {
         _intent = getIntent();
         flag = _intent.getBooleanExtra("isAdmin", false);
 
-        ImageView imageAddItemMain = findViewById(R.id.imageAddPostMain);
+        ImageView imageAddItemMain = findViewById(R.id.imageAddPostMain_AR);
         imageAddItemMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddProducts.class);
+                intent.putExtra("University","AR");
                 startActivity(intent);
             }
         });

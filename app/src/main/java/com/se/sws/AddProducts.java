@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.se.sws.boards.ArielUniversity;
+import com.se.sws.boards.BenGurion;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,13 +36,15 @@ public class AddProducts extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
-
+    Intent _intent;
     ProgressBar mprogressbarofcreatenote;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products);
 
+        _intent = getIntent();
+        String uniName = _intent.getStringExtra("University");
 
         msavenote=findViewById(R.id.imageSave);
         mcreatecontentofnote=findViewById(R.id.inputNoteText);
@@ -67,7 +70,7 @@ public class AddProducts extends AppCompatActivity {
 
                     mprogressbarofcreatenote.setVisibility(View.VISIBLE);
 
-                    DocumentReference documentReference=firebaseFirestore.collection("arielPosts").document(firebaseUser.getUid()).collection("myPosts").document();
+                    DocumentReference documentReference=firebaseFirestore.collection(uniName).document(firebaseUser.getUid()).collection("myPosts").document();
                     Map<String ,Object> note= new HashMap<>();
                     note.put("title",title);
                     note.put("content",content);
@@ -76,7 +79,19 @@ public class AddProducts extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(getApplicationContext(),"Post Created Successfully",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(AddProducts.this, ArielUniversity.class));
+                            switch (uniName){
+                                case "AR" :
+                                    startActivity(new Intent(AddProducts.this, ArielUniversity.class));
+                                    break;
+                                case "BGU" :
+                                    startActivity(new Intent(AddProducts.this, BenGurion.class));
+                                    break;
+
+                            }
+                            /**
+                             * TODO:
+                             *      Add more cases for each university
+                             */
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
