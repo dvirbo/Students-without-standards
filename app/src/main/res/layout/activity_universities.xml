@@ -1,80 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Universities"
-    android:background="@color/white"
+    android:background="@color/colorPrimary_1"
     android:layout_marginStart="10sp"
-    android:layout_marginEnd="10sp"
-    android:orientation="vertical">
+    android:layout_marginEnd="10sp">
 
-
-    <TextView
-        android:layout_width="346dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="sans-serif-black"
-        android:padding="30dp"
-        android:text="@string/universities"
-        android:textAllCaps="true"
-        android:textSize="40sp"
-        android:textStyle="italic" />
-
-    <Button
-        android:id="@+id/ariel_uni"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50sp"
-        android:padding="30dp"
-        android:text="@string/ariel"
-        android:textStyle="italic"
-        android:textSize="20sp"
-        android:backgroundTint="@color/colorIcons"/>
-
-    <Button
-        android:id="@+id/tel_aviv_uni"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50sp"
-        android:padding="30dp"
-        android:text="@string/tel_aviv"
-        android:textStyle="italic"
-        android:textSize="20sp"
-        android:backgroundTint="@color/colorIcons"/>
-
-    <Button
-        android:id="@+id/ben_gurion_uni"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50sp"
-        android:padding="30dp"
-        android:text="@string/ben_gurion"
-        android:textStyle="italic"
-        android:textSize="20sp"
-        android:backgroundTint="@color/colorIcons"/>
-
-    <Button
-        android:id="@+id/technion_uni"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50sp"
-        android:padding="30dp"
-        android:text="@string/technion"
-        android:textStyle="italic"
-        android:textSize="20sp"
-        android:backgroundTint="@color/colorIcons"/>
-
-    <Button
-        android:id="@+id/button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="165dp"
-        android:text="@string/logout"
-        android:onClick="logoutAdmin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ben_gurion_uni" />
-</LinearLayout>
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/UniversitiesView"
+            android:layout_width="379dp"
+            android:layout_height="103dp"
+            android:fontFamily="sans-serif-black"
+            android:padding="30dp"
+            android:text="@string/universities"
+            android:textAllCaps="true"
+            android:textSize="40sp"
+            android:textStyle="italic"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/ariel_uni"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:padding="30dp"
+            android:text="@string/ariel"
+            android:textStyle="italic"
+            android:textSize="20sp"
+            android:onClick="arielUniversity"
+            />
+
+        <Button
+            android:id="@+id/movetotlvfac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:padding="30dp"
+            android:text="@string/tel_aviv"
+            android:textStyle="italic"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/movetobgnfac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:padding="30dp"
+            android:text="@string/ben_gurion"
+            android:textStyle="italic"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/movetotechfac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:padding="30dp"
+            android:text="@string/technion"
+            android:textStyle="italic"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/movetotreichman"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:padding="30dp"
+            android:text="@string/reichman"
+            android:textStyle="italic"
+            android:textSize="20sp"/>
+        <Button
+            android:id="@+id/movetoHaifa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:padding="30dp"
+            android:text="@string/haifa"
+            android:textStyle="italic"
+            android:textSize="20sp"/>
+
+
+    </LinearLayout>
+</ScrollView>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".Universities"-->
+<!--    android:background="@color/white"-->
+<!--    android:layout_marginStart="10sp"-->
+<!--    android:layout_marginEnd="10sp"-->
+<!--    android:orientation="vertical">-->
+
+
+<!--    <TextView-->
+<!--        android:layout_width="346dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:fontFamily="sans-serif-black"-->
+<!--        android:padding="30dp"-->
+<!--        android:text="@string/universities"-->
+<!--        android:textAllCaps="true"-->
+<!--        android:textSize="40sp"-->
+<!--        android:textStyle="italic" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/ariel_uni"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="50sp"-->
+<!--        android:padding="30dp"-->
+<!--        android:text="@string/ariel"-->
+<!--        android:textStyle="italic"-->
+<!--        android:textSize="20sp"-->
+<!--        android:backgroundTint="@color/colorIcons"-->
+<!--        android:onClick="arielUniversity"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/tel_aviv_uni"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="50sp"-->
+<!--        android:padding="30dp"-->
+<!--        android:text="@string/tel_aviv"-->
+<!--        android:textStyle="italic"-->
+<!--        android:textSize="20sp"-->
+<!--        android:backgroundTint="@color/colorIcons"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/ben_gurion_uni"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="50sp"-->
+<!--        android:padding="30dp"-->
+<!--        android:text="@string/ben_gurion"-->
+<!--        android:textStyle="italic"-->
+<!--        android:textSize="20sp"-->
+<!--        android:backgroundTint="@color/colorIcons"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/technion_uni"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="50sp"-->
+<!--        android:padding="30dp"-->
+<!--        android:text="@string/technion"-->
+<!--        android:textStyle="italic"-->
+<!--        android:textSize="20sp"-->
+<!--        android:backgroundTint="@color/colorIcons"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:layout_marginEnd="165dp"-->
+<!--        android:text="@string/logout"-->
+<!--        android:onClick="logoutAdmin"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/ben_gurion_uni" />-->
+<!--</LinearLayout>-->
 

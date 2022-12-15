@@ -15,4 +15,18 @@
     <string name="tel_aviv">TEL-AVIV</string>
     <string name="ben_gurion">BEN-GURION</string>
     <string name="technion">Technion</string>
+    <string name="posts">Posts</string>
+    <string name="search_posts">Search posts</string>
+    <string name="post_title">Post title</string>
+    <string name="phone_number">Phone number</string>
+    <string name="add_description">Add description</string>
+    <string name="text">Text</string>
+    <string name="add_image">Add Image</string>
+    <string name="add_url_text">Add URL text</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="miscellaneous">Miscellaneous</string>
+    <string name="pick_a_color">Pick a color</string>
+    <string name="reichman">REICHMAN</string>
+    <string name="haifa">HAIFA</string>
+    <string name="ariel_university_posts">Ariel University Posts</string>
 </resources>
