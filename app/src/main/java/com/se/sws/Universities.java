@@ -13,6 +13,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.se.sws.boards.ArielUniversity;
 import com.se.sws.boards.BenGurion;
+import com.se.sws.boards.HaifaUni;
+import com.se.sws.boards.ReichmanUni;
+import com.se.sws.boards.TechnionUni;
+import com.se.sws.boards.TelAvivUni;
 
 public class Universities extends AppCompatActivity {
     boolean flag;
@@ -52,23 +56,33 @@ public class Universities extends AppCompatActivity {
 
     public void UniversitiesBoard(View view){
         Intent intent;
-        View temp_ariel = findViewById(R.id.ariel_uni);
-        View temp_ben_gurion = findViewById(R.id.ben_gurion_uni);
-        if (view == findViewById(R.id.ariel_uni)){
+
+        if (view == findViewById(R.id.ariel_uni)){  // ariel:
             intent = new Intent(getApplicationContext(), ArielUniversity.class);
             intent.putExtra("isAdmin",flag);
             startActivity(intent);
-        }else if(view == findViewById(R.id.ben_gurion_uni)){
+        }else if(view == findViewById(R.id.ben_gurion_uni)){ // BGU:
             intent = new Intent(getApplicationContext(), BenGurion.class);
             intent.putExtra("isAdmin",flag);
             startActivity(intent);
+        }else if(view == findViewById(R.id.tel_aviv_uni)){  //TLV
+            intent = new Intent(getApplicationContext(), TelAvivUni.class);
+            intent.putExtra("isAdmin",flag);
+            startActivity(intent);
+        }else if(view == findViewById(R.id.technion_uni)){ // tecnion
+            intent = new Intent(getApplicationContext(), TechnionUni.class);
+            intent.putExtra("isAdmin",flag);
+            startActivity(intent);
+        }else if(view == findViewById(R.id.reichman_uni)){ // ricman
+            intent = new Intent(getApplicationContext(), ReichmanUni.class);
+            intent.putExtra("isAdmin",flag);
+            startActivity(intent);
+        }else if(view == findViewById(R.id.haifa_uni)){ // haifa
+            intent = new Intent(getApplicationContext(), HaifaUni.class);
+            intent.putExtra("isAdmin",flag);
+            startActivity(intent);
         }
-        /**
-         * TODO:
-         *  Add more else if with the rest of Universities
-         */
-//        Intent intent = new Intent(getApplicationContext(), ArielUniversity.class);
-//        intent.putExtra("isAdmin",flag);
+
 
     }
 

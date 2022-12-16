@@ -30,4 +30,8 @@
     <string name="haifa">HAIFA</string>
     <string name="ariel_university_posts">Ariel University Posts</string>
     <string name="ben_gurion_universities_posts">Ben Gurion Universities Posts</string>
+    <string name="Hifa_universities_posts">Hifa universities posts</string>
+    <string name="reichman_universities_posts">reichman universities posts</string>
+    <string name="Technion_universities_posts">Technion universities posts</string>
+    <string name="TLV_universities_posts">TLV universities posts</string>
 </resources>
