@@ -106,6 +106,34 @@
             android:onClick="UniversitiesBoard"
             android:textSize="20sp"/>
 
+        <Button
+            android:id="@+id/log_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:layout_marginTop="50sp"
+            android:layout_weight="1"
+            android:onClick = "logoutAdmin">
+
+        </Button>
+
+        <Button
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inforamtion"
+        android:layout_marginTop="20sp"
+        android:layout_weight="1">
+        </Button>
+
+        <Button
+        android:id="@+id/contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contact"
+        android:layout_marginTop="20sp"
+        android:layout_weight="1">
+    </Button>
 
     </LinearLayout>
 </ScrollView>
