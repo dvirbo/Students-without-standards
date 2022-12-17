@@ -42,4 +42,7 @@
     <string name="technion_posts">Technion Posts</string>
     <string name="tlv_university_posts">TLV University Posts</string>
     <string name="hebrew">HEBREW</string>
+    <string name="information">Information</string>
+    <string name="this_application_is_built_for_students_and_intended_for_uploading_products_that_you_wish_donate_to_a_student">This application is built for STUDENTS and intended for uploading products that you wish donate to a student</string>
+    <string name="previous">Previous</string>
 </resources>

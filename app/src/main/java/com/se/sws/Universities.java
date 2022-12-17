@@ -22,7 +22,7 @@ import com.se.sws.boards.TelAvivUni;
 public class Universities extends AppCompatActivity {
     boolean flag;
     Intent _intent;
-
+    private Button move1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,25 @@ public class Universities extends AppCompatActivity {
 
         _intent = getIntent();
         flag = _intent.getBooleanExtra("isAdmin", false);
+
+        move1 = findViewById(R.id.info);
+        //Moves you to the Information page
+        move1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Universities.this ,InfoAboutUs.class);
+                startActivity(intent);
+            }
+        });
+        move1 = findViewById(R.id.contact);
+        //Moves you to the Information page
+        move1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Universities.this ,Contact.class);
+                startActivity(intent);
+            }
+        });
 
 /**     TODO:
         --button visibility for later user--

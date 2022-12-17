@@ -93,7 +93,7 @@ public class AddProducts extends AppCompatActivity {
                             intent = new Intent(AddProducts.this, HaifaUni.class);
                             break;
                         case "Reicman":
-                            startActivity(new Intent(AddProducts.this, ReichmanUni.class));
+                            intent = new Intent(AddProducts.this, ReichmanUni.class);
                             break;
                         case "Technion":
                             intent = new Intent(AddProducts.this, TechnionUni.class);
