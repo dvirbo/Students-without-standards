@@ -19,7 +19,7 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_12sdp"
         android:includeFontPadding="false"
-        android:text="@string/reichman_universities_posts"
+        android:text="@string/reichman_university_posts"
         tools:layout_editor_absoluteX="16dp"
         android:textColor="@color/white"
         android:textSize="@dimen/_20ssp"

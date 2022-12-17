@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.se.sws.boards.ArielUniversity;
 import com.se.sws.boards.BenGurion;
 import com.se.sws.boards.HaifaUni;
+import com.se.sws.boards.HebrewUni;
 import com.se.sws.boards.ReichmanUni;
 import com.se.sws.boards.TechnionUni;
 import com.se.sws.boards.TelAvivUni;
@@ -28,7 +29,7 @@ import java.util.Map;
 
 
 public class AddProducts extends AppCompatActivity {
-    EditText mcreatetitleofnote, mcreatecontentofnote;
+    EditText mcreatetitleofnote, mcreatecontentofnote, mcreatephoneofnote;
     ImageView msavenote;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -44,54 +45,70 @@ public class AddProducts extends AppCompatActivity {
         _intent = getIntent();
         String uniName = _intent.getStringExtra("University");
 
-        msavenote = findViewById(R.id.imageSave);
+        msavenote = findViewById(R.id.imageSave); // Save button AKA publish post
         mcreatecontentofnote = findViewById(R.id.inputNoteText);
         mcreatetitleofnote = findViewById(R.id.inputNoteTitle);
-
+        mcreatephoneofnote = findViewById(R.id.inputPhoneNumber);
         mprogressbarofcreatenote = findViewById(R.id.progressbarofcreatenote);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+
         msavenote.setOnClickListener(v -> {
             String title = mcreatetitleofnote.getText().toString().trim();
             String content = mcreatecontentofnote.getText().toString().trim();
-            if (title.isEmpty() || content.isEmpty()) {
-                Toast.makeText(getApplicationContext(), "Both field are Require", Toast.LENGTH_SHORT).show();
+            String phone = mcreatephoneofnote.getText().toString().trim();
+
+            /*
+             * All fields are required to fill
+             */
+            if (title.isEmpty() || content.isEmpty() || phone.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "All fields are Required", Toast.LENGTH_SHORT).show();
             } else {
 
                 mprogressbarofcreatenote.setVisibility(View.VISIBLE);
-
-                DocumentReference documentReference = firebaseFirestore.collection(uniName).document(firebaseUser.getUid()).collection("myPosts").document();
+                /*
+                 * Adds the Post information save to FB - phone, content & title
+                 */
+                DocumentReference documentReference = firebaseFirestore.collection(uniName).document("All").collection("items").document();
                 Map<String, Object> note = new HashMap<>();
-                note.put("title", title);
                 note.put("content", content);
+                note.put("phone",phone);
+                note.put("title", title);
 
                 documentReference.set(note).addOnSuccessListener(aVoid -> {
                     Toast.makeText(getApplicationContext(), "Post Created Successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = null;
                     switch (uniName) {
                         case "AR":
-                            startActivity(new Intent(AddProducts.this, ArielUniversity.class));
+                            intent = new Intent(AddProducts.this, ArielUniversity.class);
                             break;
                         case "BGU":
-                            startActivity(new Intent(AddProducts.this, BenGurion.class));
+                            intent = new Intent(AddProducts.this, BenGurion.class);
                             break;
                         case "Haifa":
-                            startActivity(new Intent(AddProducts.this, HaifaUni.class));
+                            intent = new Intent(AddProducts.this, HaifaUni.class);
                             break;
                         case "Reicman":
                             startActivity(new Intent(AddProducts.this, ReichmanUni.class));
                             break;
                         case "Technion":
-                            startActivity(new Intent(AddProducts.this, TechnionUni.class));
+                            intent = new Intent(AddProducts.this, TechnionUni.class);
                             break;
                         case "tlv":
-                            startActivity(new Intent(AddProducts.this, TelAvivUni.class));
+                            intent = new Intent(AddProducts.this, TelAvivUni.class);
                             break;
+                        case "heb":
+                            intent = new Intent(AddProducts.this, HebrewUni.class);
                     }
+                    assert intent != null;
+                    intent.putExtra("isAdmin",true); // Anyway the user who adds the products is an admin
+                    startActivity(intent);
 
-                }).addOnFailureListener(e -> {
+                }).addOnFailureListener(e -> { // User failed to create the post
                     Toast.makeText(getApplicationContext(), "Failed To Create Post", Toast.LENGTH_SHORT).show();
                     mprogressbarofcreatenote.setVisibility(View.INVISIBLE);
                 });

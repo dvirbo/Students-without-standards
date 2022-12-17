@@ -34,4 +34,12 @@
     <string name="reichman_universities_posts">reichman universities posts</string>
     <string name="Technion_universities_posts">Technion universities posts</string>
     <string name="TLV_universities_posts">TLV universities posts</string>
+    <string name="enter_your_post_content_here">Enter your post content here</string>
+    <string name="title_displayed_here">Title Displayed Here</string>
+    <string name="bgu_posts">BGU Posts</string>
+    <string name="haifa_university_posts">Haifa University Posts</string>
+    <string name="reichman_university_posts">Reichman University Posts</string>
+    <string name="technion_posts">Technion Posts</string>
+    <string name="tlv_university_posts">TLV University Posts</string>
+    <string name="hebrew">HEBREW</string>
 </resources>

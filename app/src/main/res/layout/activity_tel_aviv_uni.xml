@@ -18,7 +18,7 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_12sdp"
         android:includeFontPadding="false"
-        android:text="@string/TLV_universities_posts"
+        android:text="@string/tlv_university_posts"
         tools:layout_editor_absoluteX="16dp"
         android:textColor="@color/white"
         android:textSize="@dimen/_20ssp"

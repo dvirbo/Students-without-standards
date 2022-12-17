@@ -37,11 +37,11 @@
                 android:inputType="text"
                 android:textColor="@color/white"
                 android:textColorHint="@color/colorTextHint"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_20ssp"
                 app:layout_constraintTop_toBottomOf="@id/imageBack" />
 
             <EditText
-                android:id="@+id/inputNoteSubtitle"
+                android:id="@+id/inputPhoneNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
@@ -92,16 +92,15 @@
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/colorIcons" />
 
             <ImageView
                 android:id="@+id/imageSave"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_width="40dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="@dimen/_16sdp"
                 android:background="@drawable/background_done_button"
                 android:contentDescription="@string/app_name"
                 android:padding="@dimen/_4sdp"
@@ -121,7 +120,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/app_name"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitle" />
+                app:layout_constraintTop_toBottomOf="@id/inputPhoneNumber" />
 
             <ImageView
                 android:id="@+id/imageRemoveImage"
@@ -190,9 +189,9 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:background="@drawable/background_subtitle_idicator"
-                app:layout_constraintBottom_toBottomOf="@id/inputNoteSubtitle"
+                app:layout_constraintBottom_toBottomOf="@id/inputPhoneNumber"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/inputNoteSubtitle" />
+                app:layout_constraintTop_toTopOf="@id/inputPhoneNumber" />
 
             <ProgressBar
                 android:id="@+id/progressbarofcreatenote"
@@ -210,8 +209,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <include layout="@layout/layout_miscellaneous" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

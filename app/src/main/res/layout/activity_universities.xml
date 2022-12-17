@@ -64,6 +64,17 @@
             android:onClick="UniversitiesBoard"/>
 
         <Button
+            android:id="@+id/hebrew_uni"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:padding="30dp"
+            android:text="@string/hebrew"
+            android:textStyle="italic"
+            android:textSize="20sp"
+            android:onClick="UniversitiesBoard"/>
+
+        <Button
             android:id="@+id/technion_uni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
