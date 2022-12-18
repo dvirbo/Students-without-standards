@@ -31,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.se.sws.AddProducts;
 import com.se.sws.R;
+import com.se.sws.Universities;
 import com.se.sws.firebasemodel;
 import com.se.sws.postdetails;
 
@@ -203,21 +204,11 @@ public class HebrewUni extends AppCompatActivity {
             noteAdapter.stopListening();
         }
     }
+    // Returns to universities menu
+    public void backHeb(View view){
+        Intent intent = new Intent(HebrewUni.this, Universities.class);
+        intent.putExtra("isAdmin",flag); // If the user who clicked on the posts is an admin or not
+        startActivity(intent);
+    }
 }
 
-//package com.se.sws.boards;
-//
-//import androidx.appcompat.app.AppCompatActivity;
-//
-//import android.os.Bundle;
-//
-//import com.se.sws.R;
-//
-//public class HebrewUni extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_hebrew_uni);
-//    }
-//}
