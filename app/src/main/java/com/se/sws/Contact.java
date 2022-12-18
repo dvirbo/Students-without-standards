@@ -22,6 +22,10 @@ public class Contact extends AppCompatActivity {
         mEditTextSubject = findViewById(R.id.edit_text_subject);
         mEditTextMessage = findViewById(R.id.edit_text_message);
 
+        /*
+        Here the button sends the mail
+         */
+
         Button buttonSend = findViewById(R.id.button_send);
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
