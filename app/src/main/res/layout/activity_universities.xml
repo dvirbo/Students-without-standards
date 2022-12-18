@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
+
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,10 +13,13 @@
     android:layout_marginStart="10sp"
     android:layout_marginEnd="10sp">
 
+
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="ExtraText">
 
 
         <TextView
@@ -28,6 +33,9 @@
             android:textSize="40sp"
             android:textStyle="italic"
             android:textAlignment="center"/>
+        /*
+        Here
+        */
 
         <Button
             android:id="@+id/ariel_uni"
@@ -40,6 +48,9 @@
             android:textSize="20sp"
             android:onClick="UniversitiesBoard"
             />
+        /*
+        Here the button sends the mail
+        */
 
         <Button
             android:id="@+id/tel_aviv_uni"
@@ -51,6 +62,9 @@
             android:textStyle="italic"
             android:onClick="UniversitiesBoard"
             android:textSize="20sp" />
+        /*
+        Here the button sends the mail
+        */
 
         <Button
             android:id="@+id/ben_gurion_uni"
@@ -62,6 +76,9 @@
             android:textStyle="italic"
             android:textSize="20sp"
             android:onClick="UniversitiesBoard"/>
+        /*
+        Here the button sends the mail
+        */
 
         <Button
             android:id="@+id/hebrew_uni"
@@ -73,6 +90,9 @@
             android:textStyle="italic"
             android:textSize="20sp"
             android:onClick="UniversitiesBoard"/>
+        /*
+        Here the button sends the mail
+        */
 
         <Button
             android:id="@+id/technion_uni"
@@ -84,6 +104,9 @@
             android:textStyle="italic"
             android:onClick="UniversitiesBoard"
             android:textSize="20sp"/>
+        /*
+        Here the button sends the mail
+        */
 
         <Button
             android:id="@+id/reichman_uni"
@@ -95,6 +118,10 @@
             android:textStyle="italic"
             android:onClick="UniversitiesBoard"
             android:textSize="20sp"/>
+
+        /*
+        Here the button sends the mail
+        */
         <Button
             android:id="@+id/haifa_uni"
             android:layout_width="match_parent"
@@ -105,7 +132,9 @@
             android:textStyle="italic"
             android:onClick="UniversitiesBoard"
             android:textSize="20sp"/>
-
+        /*
+        Here the button sends the mail
+        */
         <Button
             android:id="@+id/log_out"
             android:layout_width="match_parent"
