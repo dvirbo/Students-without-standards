@@ -46,6 +46,7 @@ public class Universities extends AppCompatActivity {
                 CLASS to the InfoAboutUs CLASS
                  */
                 Intent intent = new Intent(Universities.this ,InfoAboutUs.class);
+                intent.putExtra("isAdmin",flag);
                 startActivity(intent);
             }
         });
@@ -61,6 +62,7 @@ public class Universities extends AppCompatActivity {
                 Here how it actually moves us from the Universities class to the Contact class
                  */
                 Intent intent = new Intent(Universities.this ,Contact.class);
+                intent.putExtra("isAdmin",flag);
                 startActivity(intent);
             }
         });

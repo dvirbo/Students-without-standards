@@ -12,6 +12,7 @@ public class Contact extends AppCompatActivity {
     private EditText mEditTextSubject;
     private EditText mEditTextMessage;
     private Button move3;
+    private boolean flag;
     /*
     Here i've added a button that by pressing him, it will bring the USER back
     to the Universities page
@@ -21,6 +22,9 @@ public class Contact extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+        Intent _intent = getIntent();
+        flag = _intent.getBooleanExtra("isAdmin", false);
+
 
         /*
         Here ive added two id finders which relates to the subject and the message
@@ -57,6 +61,7 @@ public class Contact extends AppCompatActivity {
                 Here it bring back the USER to the Universities page
                  */
                 Intent intent = new Intent(Contact.this ,Universities.class);
+                intent.putExtra("isAdmin",flag);
                 startActivity(intent);
             }
         });
@@ -68,7 +73,7 @@ public class Contact extends AppCompatActivity {
     lines 75-78 are
      */
     private void sendMail() {
-        String[] recipientList = {"StudentsWstandards@gmail.com"};
+        String[] recipientList = {"StudentsWstandarts@gmail.com"};
         String subject = mEditTextSubject.getText().toString();
         String message = mEditTextMessage.getText().toString();
 
