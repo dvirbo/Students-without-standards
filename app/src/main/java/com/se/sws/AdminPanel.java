@@ -8,6 +8,9 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Not being used, only to write & test some functions maybe later will
+ */
 public class AdminPanel extends AppCompatActivity {
 
     @Override
@@ -20,11 +23,6 @@ public class AdminPanel extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(), Login.class));
         finish();
-    }
-
-    public void adminMessages(View view){
-        // messaging system via Firebase code here <<<<<
-        startActivity(new Intent(getApplicationContext(),AdminMessages.class));
     }
 
     public void getStats(View view){

@@ -24,7 +24,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".postdetails"
+            android:name=".postDetails"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -96,13 +96,6 @@
         </activity>
         <activity
             android:name=".MessageToAdmin"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".AdminMessages"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

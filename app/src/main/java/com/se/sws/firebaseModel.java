@@ -1,14 +1,17 @@
 package com.se.sws;
 
-public class firebasemodel {
-    private String title;
-    private String content;
-    private String phone;
+/**
+ * Represents the format way we receive the information from firebase
+ */
+public class firebaseModel {
+    private String title; // Title of post
+    private String content; // Content of post
+    private String phone; // Phone number of the person
 
-    public firebasemodel() {
+    public firebaseModel() {
     }
 
-    public firebasemodel (String title, String content, String phone){
+    public firebaseModel(String title, String content, String phone){
         this.title = title;
         this.content = content;
         this.phone = phone;

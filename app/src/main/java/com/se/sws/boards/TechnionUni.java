@@ -32,39 +32,42 @@ import com.google.firebase.firestore.Query;
 import com.se.sws.AddProducts;
 import com.se.sws.R;
 import com.se.sws.Universities;
-import com.se.sws.firebasemodel;
-import com.se.sws.postdetails;
-
-import java.util.Objects;
+import com.se.sws.firebaseModel;
+import com.se.sws.postDetails;
 
 public class TechnionUni extends AppCompatActivity {
-    boolean flag;
-    Intent _intent;
-    ImageView mcreatenotesfab;
+    boolean flag; // Is user admin or not
+    Intent _intent; // Usage in multiple functions
+    ImageView mCreatePostsFab; // Background
     private FirebaseAuth firebaseAuth;
 
 
-    RecyclerView mrecyclerview;
-    StaggeredGridLayoutManager staggeredGridLayoutManager;
+    RecyclerView mRecyclerView; // For scrolling
+    StaggeredGridLayoutManager staggeredGridLayoutManager; // The way posts are shown
 
-
-    FirebaseUser firebaseUser;
+    /**
+     * FB information - user & fireStore
+     */
+    FirebaseUser firebaseUser; // Will be used for representatives of each university
     FirebaseFirestore firebaseFirestore;
 
-    FirestoreRecyclerAdapter<firebasemodel, NoteViewHolder> noteAdapter;
+    /**
+     * We connect FB and the app together here
+     */
+    FirestoreRecyclerAdapter<firebaseModel, PostViewHolder> postAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_technion_uni);
-        View technion = findViewById(R.id.imageAddPostMain_Technion);
+        View technion = findViewById(R.id.imageAddPostMain_Technion);  // We click on Technion University board add post button ('(+)' button)
         _intent = getIntent();
-        flag = _intent.getBooleanExtra("isAdmin", false);
+        flag = _intent.getBooleanExtra("isAdmin", false); // Is the user admin or not
 
-        mcreatenotesfab = (ImageView) technion;
+        mCreatePostsFab = (ImageView) technion;
         firebaseAuth = FirebaseAuth.getInstance();
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser(); // Will be used for representatives of each university
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         //Objects.requireNonNull(getSupportActionBar()).setTitle("Technion Posts");
@@ -79,30 +82,39 @@ public class TechnionUni extends AppCompatActivity {
             }
         });
 
+        // If user is an admin a post add option will be available - part of admin panel
         if (flag) {
             imageAddItemMain.setVisibility(View.VISIBLE);
         } else {
             imageAddItemMain.setVisibility(View.GONE);
         }
 
-
+        // Gets all the storage that goes under the path Technion>All>items & sort the items by title
         Query query = firebaseFirestore.collection("Technion").document("All").collection("items").orderBy("title", Query.Direction.ASCENDING);
 
-        FirestoreRecyclerOptions<firebasemodel> allusernotes = new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(query, firebasemodel.class).build();
+        // Connect the query above with the adapter declared on the start
+        FirestoreRecyclerOptions<firebaseModel> allUserPosts = new FirestoreRecyclerOptions.Builder<firebaseModel>().setQuery(query, firebaseModel.class).build();
 
-        noteAdapter = new FirestoreRecyclerAdapter<firebasemodel, NoteViewHolder>(allusernotes) {
+        // Fill the information needed of the adapter
+        postAdapter = new FirestoreRecyclerAdapter<firebaseModel, PostViewHolder>(allUserPosts) {
             @Override
-            protected void onBindViewHolder(@NonNull NoteViewHolder holder, int position, @NonNull firebasemodel model) {
-                ImageView popupbutton=holder.itemView.findViewById(R.id.menupopbutton);
+            protected void onBindViewHolder(@NonNull PostViewHolder holder, int position, @NonNull firebaseModel model) {
+                ImageView popupButton=holder.itemView.findViewById(R.id.menupopbutton);
+                // The information shown on each small post
                 holder.title.setText(model.getTitle());
                 holder.content.setText(model.getContent());
                 holder.phone.setText(model.getPhone());
-                String docId=noteAdapter.getSnapshots().getSnapshot(position).getId();
+                // So we know which post to delete
+                String docId= postAdapter.getSnapshots().getSnapshot(position).getId();
+
+                /*
+                 * When post is being pressed and want to be extended
+                 */
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Post details activity
-                        Intent intent = new Intent(v.getContext(), postdetails.class);
+                        // Post details activity - pass all the information to postDetails class
+                        Intent intent = new Intent(v.getContext(), postDetails.class);
                         intent.putExtra("university", "Technion");
                         intent.putExtra("title", model.getTitle());
                         intent.putExtra("content", model.getContent());
@@ -113,19 +125,25 @@ public class TechnionUni extends AppCompatActivity {
                         v.getContext().startActivity(intent);
                     }
                 });
-                if (!flag) popupbutton.setVisibility(View.GONE);
-                popupbutton.setOnClickListener(new View.OnClickListener() {
+                // If user is not an admin will not be able to see the 3 dots & delete a post (part of Admin Panel)
+                if (!flag) popupButton.setVisibility(View.GONE);
+                /*
+                 * 3 dots button
+                 */
+                popupButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        PopupMenu popupMenu=new PopupMenu(v.getContext(),v);
+                        PopupMenu popupMenu = new PopupMenu(v.getContext(),v);
                         popupMenu.setGravity(Gravity.END);
+                        // Delete button is shown whenever being pressed
                         popupMenu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(TechnionUni.this);
+                           AlertDialog.Builder builder = new AlertDialog.Builder(TechnionUni.this);
                            builder.setTitle("Delete");
                            builder.setMessage("Are you sure you want to delete?");
                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                               // We choose to delete
                                @Override
                                public void onClick(DialogInterface dialogInterface, int i) {
                                    DocumentReference documentReference=firebaseFirestore.collection("Technion").document("All").collection("items").document(docId);
@@ -142,6 +160,7 @@ public class TechnionUni extends AppCompatActivity {
                                    });
                                }
                            });
+                           // Do nothing when "no" is pressed
                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                                @Override
                                public void onClick(DialogInterface dialogInterface, int i) {
@@ -159,26 +178,29 @@ public class TechnionUni extends AppCompatActivity {
 
             @NonNull
             @Override
-            public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.posts_layout, parent, false);
-                return new NoteViewHolder(view);
+                return new PostViewHolder(view);
             }
         };
-
-        mrecyclerview = findViewById(R.id.postsRecyclerView);
-        mrecyclerview.setHasFixedSize(true);
+        // After post is deleted do these below
+        mRecyclerView = findViewById(R.id.postsRecyclerView);
+        mRecyclerView.setHasFixedSize(true);
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        mrecyclerview.setLayoutManager(staggeredGridLayoutManager);
-        mrecyclerview.setAdapter(noteAdapter);
+        mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
+        mRecyclerView.setAdapter(postAdapter);
 
     }
 
-    public class NoteViewHolder extends RecyclerView.ViewHolder {
+    /**
+     * Inner class of posts, used in the function above
+     */
+    public class PostViewHolder extends RecyclerView.ViewHolder {
         private TextView title;
         private TextView content;
         private TextView phone;
 
-        public NoteViewHolder(@NonNull View itemView) {
+        public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.textTitle);
             content = (TextView) itemView.findViewById(R.id.textSubtitle);
@@ -190,17 +212,16 @@ public class TechnionUni extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        noteAdapter.startListening();
+        postAdapter.startListening();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (noteAdapter != null) {
-            noteAdapter.stopListening();
+        if (postAdapter != null) {
+            postAdapter.stopListening();
         }
     }
-
     // Returns to universities menu
     public void backTech(View view){
         Intent intent = new Intent(TechnionUni.this, Universities.class);

@@ -1,16 +1,13 @@
 package com.se.sws;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.se.sws.boards.ArielUniversity;
 import com.se.sws.boards.BenGurion;
 import com.se.sws.boards.HaifaUni;
@@ -68,15 +65,6 @@ public class Universities extends AppCompatActivity {
             }
         });
 
-/**     TODO:
-        --button visibility for later user--
-        Button _button1 = (Button)findViewById(R.id.ariel_uni);
-        if(flag == false){
-            _button1.setVisibility(View.GONE);
-        }else{
-            _button1.setVisibility(View.VISIBLE);
-        }
- */
     }
     /*
     Here is the code line which logs the USER out to the Login class.
@@ -135,7 +123,7 @@ Moves us to the picked university
 
 
         assert intent != null;
-        intent.putExtra("isAdmin",flag);
+        intent.putExtra("isAdmin",flag); // Whether the user is an admin or not
         startActivity(intent);
 
 

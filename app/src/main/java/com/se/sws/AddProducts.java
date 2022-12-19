@@ -27,15 +27,22 @@ import com.se.sws.boards.TelAvivUni;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * The admin panel - adds a product option
+ */
 public class AddProducts extends AppCompatActivity {
-    EditText mcreatetitleofnote, mcreatecontentofnote, mcreatephoneofnote;
-    ImageView msavenote;
+    // Edit text info variables
+    EditText mCreateTitleOfPost, mCreateContentOfPost, mCreatePhoneOfPost;
+    ImageView mSavePost;
+
+    // Firebase credentials - where and how to put the information we want to store
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
+
     Intent _intent;
-    ProgressBar mprogressbarofcreatenote;
+    ProgressBar mProgressBarOfCreatePost; // Used when the post is published
+    String uniName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,33 +50,46 @@ public class AddProducts extends AppCompatActivity {
         setContentView(R.layout.activity_add_products);
 
         _intent = getIntent();
-        String uniName = _intent.getStringExtra("University");
+        /*
+        After we press on universities we get the name of the university by passing
+        the name of it via an intent (put extra)
+        */
+        uniName = _intent.getStringExtra("University");
 
-        msavenote = findViewById(R.id.imageSave); // Save button AKA publish post
-        mcreatecontentofnote = findViewById(R.id.inputNoteText);
-        mcreatetitleofnote = findViewById(R.id.inputNoteTitle);
-        mcreatephoneofnote = findViewById(R.id.inputPhoneNumber);
-        mprogressbarofcreatenote = findViewById(R.id.progressbarofcreatenote);
+        /*
+        * Variables below gets the information via the activity_add_product.xml
+        * Whatever we fill goes in these boys except for the progress bar which we do not fill
+        * But it appears whenever you create the post
+        */
+        mSavePost = findViewById(R.id.imageSave);
+        mCreateContentOfPost = findViewById(R.id.inputNoteText);
+        mCreateTitleOfPost = findViewById(R.id.inputNoteTitle);
+        mCreatePhoneOfPost = findViewById(R.id.inputPhoneNumber);
+        mProgressBarOfCreatePost = findViewById(R.id.progressbarofcreatenote);
 
-
+        /*
+        * Gets the info from FB
+        */
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser(); // Will be added later where we want to add representatives for each university
 
-
-        msavenote.setOnClickListener(v -> {
-            String title = mcreatetitleofnote.getText().toString().trim();
-            String content = mcreatecontentofnote.getText().toString().trim();
-            String phone = mcreatephoneofnote.getText().toString().trim();
+        /*
+        * Gets the info from the filled fields (title, content & phone)
+        */
+        mSavePost.setOnClickListener(v -> {
+            String title = mCreateTitleOfPost.getText().toString().trim();
+            String content = mCreateContentOfPost.getText().toString().trim();
+            String phone = mCreatePhoneOfPost.getText().toString().trim();
 
             /*
-             * All fields are required to fill
+             * All fields are required to fill - if one of em are empty will throw a toast
              */
             if (title.isEmpty() || content.isEmpty() || phone.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "All fields are Required", Toast.LENGTH_SHORT).show();
             } else {
-
-                mprogressbarofcreatenote.setVisibility(View.VISIBLE);
+                // Creates the post animation
+                mProgressBarOfCreatePost.setVisibility(View.VISIBLE);
                 /*
                  * Adds the Post information save to FB - phone, content & title
                  */
@@ -81,7 +101,7 @@ public class AddProducts extends AppCompatActivity {
 
                 documentReference.set(note).addOnSuccessListener(aVoid -> {
                     Toast.makeText(getApplicationContext(), "Post Created Successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = null;
+                    Intent intent = null; // Declare the intent once so we use it more efficiently instead of starting it every time we want to move into another university board
                     switch (uniName) {
                         case "AR":
                             intent = new Intent(AddProducts.this, ArielUniversity.class);
@@ -110,12 +130,17 @@ public class AddProducts extends AppCompatActivity {
 
                 }).addOnFailureListener(e -> { // User failed to create the post
                     Toast.makeText(getApplicationContext(), "Failed To Create Post", Toast.LENGTH_SHORT).show();
-                    mprogressbarofcreatenote.setVisibility(View.INVISIBLE);
+                    mProgressBarOfCreatePost.setVisibility(View.INVISIBLE);
                 });
             }
         });
     }
 
+    /**
+     * Will be used later probably (the built in back arrow button)
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -124,6 +149,36 @@ public class AddProducts extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Which board to return to
+    public void backArrowAdd(View view){
+        Intent intent = null;
+        switch (uniName) {
+            case "AR":
+                intent = new Intent(AddProducts.this, ArielUniversity.class);
+                break;
+            case "BGU":
+                intent = new Intent(AddProducts.this, BenGurion.class);
+                break;
+            case "Haifa":
+                intent = new Intent(AddProducts.this, HaifaUni.class);
+                break;
+            case "Reicman":
+                intent = new Intent(AddProducts.this, ReichmanUni.class);
+                break;
+            case "Technion":
+                intent = new Intent(AddProducts.this, TechnionUni.class);
+                break;
+            case "tlv":
+                intent = new Intent(AddProducts.this, TelAvivUni.class);
+                break;
+            case "heb":
+                intent = new Intent(AddProducts.this, HebrewUni.class);
+        }
+        assert intent != null;
+        intent.putExtra("isAdmin",true); // User who adds the post is an admin
+        startActivity(intent);
     }
 
 

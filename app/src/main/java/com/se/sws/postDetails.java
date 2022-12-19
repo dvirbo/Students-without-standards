@@ -15,25 +15,29 @@ import com.se.sws.boards.ReichmanUni;
 import com.se.sws.boards.TechnionUni;
 import com.se.sws.boards.TelAvivUni;
 
-public class postdetails extends AppCompatActivity {
+/**
+ * Whenever we extend a post we use this class
+ */
+public class postDetails extends AppCompatActivity {
 
-    private TextView mtitleofnotedetail,mcontentofnotedetail, mphoneofnotedetail;
-    private String university;
-    private Boolean flag;
+    private TextView mTitleOfPostDetail, mContentOfPostDetail, mPhoneOfPostDetail;
+    private String university; // The university pressed on when entering universities
+    private Boolean flag; // is the user admin or not
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postdetails);
-        mtitleofnotedetail=findViewById(R.id.titleofnotedetail);
-        mcontentofnotedetail=findViewById(R.id.contentofnotedetail);
-        mphoneofnotedetail = findViewById(R.id.phoneofnotedetail);
-        Intent data=getIntent();
+        // Gets the id of 3 TextViews in the XML file
+        mTitleOfPostDetail = findViewById(R.id.titleofnotedetail);
+        mContentOfPostDetail = findViewById(R.id.contentofnotedetail);
+        mPhoneOfPostDetail = findViewById(R.id.phoneofnotedetail);
+        Intent data=getIntent(); // instead of writing getIntent.getStringExtra, getBooleanExtra etc...
 
         // Fill every detail on screen
-        mcontentofnotedetail.setText(data.getStringExtra("content"));
-        mtitleofnotedetail.setText(data.getStringExtra("title"));
-        mphoneofnotedetail.setText(data.getStringExtra("phone"));
+        mContentOfPostDetail.setText(data.getStringExtra("content"));
+        mTitleOfPostDetail.setText(data.getStringExtra("title"));
+        mPhoneOfPostDetail.setText(data.getStringExtra("phone"));
 
         // Will be used in back-arrow function (which board to return)
         this.university = data.getStringExtra("university");
@@ -45,25 +49,25 @@ public class postdetails extends AppCompatActivity {
         Intent intent = null;
         switch (university) {
             case "AR":
-                intent = new Intent(postdetails.this, ArielUniversity.class);
+                intent = new Intent(postDetails.this, ArielUniversity.class);
                 break;
             case "BGU":
-                intent = new Intent(postdetails.this, BenGurion.class);
+                intent = new Intent(postDetails.this, BenGurion.class);
                 break;
             case "Haifa":
-                intent = new Intent(postdetails.this, HaifaUni.class);
+                intent = new Intent(postDetails.this, HaifaUni.class);
                 break;
             case "Reicman":
-                intent = new Intent(postdetails.this, ReichmanUni.class);
+                intent = new Intent(postDetails.this, ReichmanUni.class);
                 break;
             case "Technion":
-                intent = new Intent(postdetails.this, TechnionUni.class);
+                intent = new Intent(postDetails.this, TechnionUni.class);
                 break;
             case "tlv":
-                intent = new Intent(postdetails.this, TelAvivUni.class);
+                intent = new Intent(postDetails.this, TelAvivUni.class);
                 break;
             case "heb":
-                intent = new Intent(postdetails.this, HebrewUni.class);
+                intent = new Intent(postDetails.this, HebrewUni.class);
         }
         assert intent != null;
         intent.putExtra("isAdmin",flag); // If the user who clicked on the posts is an admin or not

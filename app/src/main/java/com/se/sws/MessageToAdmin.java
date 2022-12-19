@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+/**
+ * Later might be used or deleted
+ */
 public class MessageToAdmin extends AppCompatActivity {
 
     @Override
