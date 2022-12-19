@@ -23,11 +23,11 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
     }
+
     @Override
     public void onBackPressed() {
-
+        // Called when the activity has detected the user's press of the back key.
         android.os.Process.killProcess(android.os.Process.myPid());
-        // This above line close correctly
     }
 
 }

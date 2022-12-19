@@ -19,12 +19,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
-    EditText fullName,email,password,phone;
-    Button registerBtn,goToLogin;
+    EditText fullName, email, password, phone; // relevant data
+    Button registerBtn, goToLogin;
     boolean valid = true;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
-    CheckBox isAdminBox,isStudentBox;
+    CheckBox isAdminBox, isStudentBox; // where user sing as admin / student
 
     @Override
 
@@ -45,15 +45,19 @@ public class Register extends AppCompatActivity {
         isAdminBox = findViewById(R.id.isAdmin);
         isStudentBox = findViewById(R.id.isStudent);
 
-        //Logics
+
+        /*
+        check if user is admin or student
+        by Register a callback to be invoked when the checked state of this button changes.
+         */
         isStudentBox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-            if (compoundButton.isChecked()){
+            if (compoundButton.isChecked()) {
                 isAdminBox.setChecked(false);
             }
         });
 
         isAdminBox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-            if (compoundButton.isChecked()){
+            if (compoundButton.isChecked()) {
                 isStudentBox.setChecked(false);
             }
         });
@@ -65,54 +69,59 @@ public class Register extends AppCompatActivity {
             checkField(phone);
 
             //checkbox confirmation
-            if (!(isAdminBox.isChecked() || isStudentBox.isChecked())){
-                Toast.makeText(Register.this,"Select the Account Type",Toast.LENGTH_SHORT).show();
+            if (!(isAdminBox.isChecked() || isStudentBox.isChecked())) {
+                Toast.makeText(Register.this, "Select the Account Type", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            if (valid){
-                fAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnSuccessListener(authResult -> {
+            /*
+            if valid - create userInfo (HashMap) that contain the relevant data
+            */
+            if (valid) {
+                fAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnSuccessListener(authResult -> {
                     FirebaseUser user = fAuth.getCurrentUser();
-                    Toast.makeText(Register.this,"Account Created",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Register.this, "Account Created", Toast.LENGTH_SHORT).show();
                     assert user != null;
                     DocumentReference df = fStore.collection("Users").document(user.getUid());
-                    Map<String,Object> userInfo = new HashMap<>();
-                    userInfo.put("FullName",fullName.getText().toString());
-                    userInfo.put("UserEmail",email.getText().toString());
-                    userInfo.put("PhoneNumber",phone.getText().toString());
+                    Map<String, Object> userInfo = new HashMap<>();
+                    userInfo.put("FullName", fullName.getText().toString());
+                    userInfo.put("UserEmail", email.getText().toString());
+                    userInfo.put("PhoneNumber", phone.getText().toString());
                     //specify admin
-                    if (isAdminBox.isChecked()){
-                        userInfo.put("isAdmin","1");
+                    if (isAdminBox.isChecked()) {
+                        userInfo.put("isAdmin", "1");
                     }
-                    if (isStudentBox.isChecked()){
-                        userInfo.put("isUser","1");
+                    if (isStudentBox.isChecked()) {
+                        userInfo.put("isUser", "1");
                     }
 
                     df.set(userInfo);
 
-                    if (isAdminBox.isChecked()){
+                    if (isAdminBox.isChecked()) {
                         startActivity(new Intent(getApplicationContext(), AdminPanel.class));
                         finish();
                     }
-                    if (isStudentBox.isChecked()){
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    if (isStudentBox.isChecked()) {
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
                     }
 
 
-                }).addOnFailureListener(e -> Toast.makeText(Register.this,"Failed to Create Account",Toast.LENGTH_SHORT).show());
+                }).addOnFailureListener(e -> Toast.makeText(Register.this, "Failed to Create Account", Toast.LENGTH_SHORT).show());
             }
         });
 
-        goToLogin.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),Login.class)));
+        goToLogin.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Login.class)));
 
     }
 
-    public void checkField(EditText textField){
-        if(textField.getText().toString().isEmpty()){
+    /*
+    This method check if the data is valid
+     */
+    public void checkField(EditText textField) {
+        if (textField.getText().toString().isEmpty()) {
             textField.setError("Error");
             valid = false;
-        }else {
+        } else {
             valid = true;
         }
 
