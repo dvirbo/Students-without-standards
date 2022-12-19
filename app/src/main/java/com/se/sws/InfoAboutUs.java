@@ -21,6 +21,7 @@ public class InfoAboutUs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_about_us);
+        boolean flag = getIntent().getBooleanExtra("isAdmin",false);
         /*
         This is the declaration for the button id previous which once clicking on it,
         it brings the USER back to the Universities page.
@@ -35,6 +36,8 @@ public class InfoAboutUs extends AppCompatActivity {
                 Here by valuing the Intent object to bring us back to the Universities class
                  */
                 Intent intent = new Intent(InfoAboutUs.this ,Universities.class);
+
+                intent.putExtra("isAdmin",flag);
                 startActivity(intent);
             }
         });
