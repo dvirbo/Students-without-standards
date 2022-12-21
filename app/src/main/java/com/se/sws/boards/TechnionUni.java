@@ -90,7 +90,7 @@ public class TechnionUni extends AppCompatActivity {
         }
 
         // Gets all the storage that goes under the path Technion>All>items & sort the items by title
-        Query query = firebaseFirestore.collection("Technion").document("All").collection("items").orderBy("title", Query.Direction.ASCENDING);
+        Query query = firebaseFirestore.collection("Universities").document("Technion").collection("All").orderBy("title", Query.Direction.ASCENDING);
 
         // Connect the query above with the adapter declared on the start
         FirestoreRecyclerOptions<firebaseModel> allUserPosts = new FirestoreRecyclerOptions.Builder<firebaseModel>().setQuery(query, firebaseModel.class).build();

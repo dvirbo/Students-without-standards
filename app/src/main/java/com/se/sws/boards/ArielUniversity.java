@@ -96,7 +96,8 @@ public class ArielUniversity extends AppCompatActivity {
         }
 
     // Gets all the storage that goes under the path AR>All>items & sort the items by title
-    Query query=firebaseFirestore.collection("AR").document("All").collection("items").orderBy("title",Query.Direction.ASCENDING);
+        //.collection("Universities").document(uniName).collection("All").document("items")
+    Query query=firebaseFirestore.collection("Universities").document("AR").collection("All").orderBy("title", Query.Direction.ASCENDING);
 
     // Connect the query above with the adapter declared on the start
     FirestoreRecyclerOptions<firebaseModel> allUsersPosts = new FirestoreRecyclerOptions.Builder<firebaseModel>().setQuery(query, firebaseModel.class).build();

@@ -93,7 +93,7 @@ public class AddProducts extends AppCompatActivity {
                 /*
                  * Adds the Post information save to FB - phone, content & title
                  */
-                DocumentReference documentReference = firebaseFirestore.collection(uniName).document("All").collection("items").document();
+                DocumentReference documentReference = firebaseFirestore.collection("Universities").document(uniName).collection("All").document();
                 Map<String, Object> note = new HashMap<>();
                 note.put("content", content);
                 note.put("phone",phone);

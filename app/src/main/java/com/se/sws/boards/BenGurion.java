@@ -95,7 +95,7 @@ public class BenGurion extends AppCompatActivity {
         }
 
         // Gets all the storage that goes under the path BGU>All>items & sort the items by title
-        Query query = firebaseFirestore.collection("BGU").document("All").collection("items").orderBy("title", Query.Direction.ASCENDING);
+        Query query = firebaseFirestore.collection("Universities").document("BGU").collection("All").orderBy("title", Query.Direction.ASCENDING);
 
         // Connect the query above with the adapter declared on the start
         FirestoreRecyclerOptions<firebaseModel> allUsersPosts = new FirestoreRecyclerOptions.Builder<firebaseModel>().setQuery(query, firebaseModel.class).build();
