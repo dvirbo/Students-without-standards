@@ -45,7 +45,6 @@ public class Register extends AppCompatActivity {
         isAdminBox = findViewById(R.id.isAdmin);
         isStudentBox = findViewById(R.id.isStudent);
 
-
         /*
         check if user is admin or student
         by Register a callback to be invoked when the checked state of this button changes.
@@ -73,10 +72,8 @@ public class Register extends AppCompatActivity {
                 Toast.makeText(Register.this, "Select the Account Type", Toast.LENGTH_SHORT).show();
                 return;
             }
-            /*
-            if valid - create userInfo (HashMap) that contain the relevant data
-            */
-            if (valid) {
+
+            if (valid) { // if valid -> create userInfo (HashMap) that contain the relevant data
                 fAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnSuccessListener(authResult -> {
                     FirebaseUser user = fAuth.getCurrentUser();
                     Toast.makeText(Register.this, "Account Created", Toast.LENGTH_SHORT).show();
@@ -114,8 +111,11 @@ public class Register extends AppCompatActivity {
 
     }
 
-    /*
-    This method check if the data is valid
+
+
+    /**
+     * This method check if the data is valid
+     * @param textField - text data - contain our data that need to load to DB
      */
     public void checkField(EditText textField) {
         if (textField.getText().toString().isEmpty()) {

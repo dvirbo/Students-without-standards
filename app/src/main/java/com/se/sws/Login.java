@@ -28,7 +28,15 @@ public class Login extends AppCompatActivity {
     boolean valid = true;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
+    /*
+    Called when the activity is starting, where most initialization go:
+    init the firebase store & auth
+    */
 
+    /**
+     * Called when the activity is starting, where most initialization go:
+     * init the firebase store & auth
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
