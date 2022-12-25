@@ -7,14 +7,16 @@ public class firebaseModel {
     private String title; // Title of post
     private String content; // Content of post
     private String phone; // Phone number of the person
+    private String uid; // Name of the post uploader
 
     public firebaseModel() {
     }
 
-    public firebaseModel(String title, String content, String phone){
+    public firebaseModel(String title, String content, String phone, String uid){
         this.title = title;
         this.content = content;
         this.phone = phone;
+        this.uid = uid;
     }
 
 
@@ -37,5 +39,10 @@ public class firebaseModel {
     public String getPhone() { return phone;}
 
     public void setPhone(String phone) { this.phone = phone; }
+
+    public String getUid() { return uid; }
+
+    public void setAuthor(String author) { this.uid = author;}
+
 
 }

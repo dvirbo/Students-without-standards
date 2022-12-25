@@ -13,6 +13,7 @@ public class Contact extends AppCompatActivity {
     private EditText mEditTextMessage;
     private Button move3;
     private boolean flag;
+   private String uid; // Current user id from login activity
     /*
     Here i've added a button that by pressing him, it will bring the USER back
     to the Universities page
@@ -24,6 +25,8 @@ public class Contact extends AppCompatActivity {
         setContentView(R.layout.activity_contact);
         Intent _intent = getIntent();
         flag = _intent.getBooleanExtra("isAdmin", false);
+        uid = _intent.getStringExtra("uid");
+
 
 
         /*
@@ -62,6 +65,7 @@ public class Contact extends AppCompatActivity {
                  */
                 Intent intent = new Intent(Contact.this ,Universities.class);
                 intent.putExtra("isAdmin",flag);
+                intent.putExtra("uid",uid);
                 startActivity(intent);
             }
         });

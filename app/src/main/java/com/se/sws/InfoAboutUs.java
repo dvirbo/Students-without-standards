@@ -14,6 +14,7 @@ public class InfoAboutUs extends AppCompatActivity {
      */
 
     private Button move2;
+    private String uid; // Current user id from login activity
     /*
     I've added an instance of a Button which will help me go back to the Universities page
      */
@@ -22,6 +23,7 @@ public class InfoAboutUs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_about_us);
         boolean flag = getIntent().getBooleanExtra("isAdmin",false);
+        uid = getIntent().getStringExtra("uid");
         /*
         This is the declaration for the button id previous which once clicking on it,
         it brings the USER back to the Universities page.
@@ -38,6 +40,7 @@ public class InfoAboutUs extends AppCompatActivity {
                 Intent intent = new Intent(InfoAboutUs.this ,Universities.class);
 
                 intent.putExtra("isAdmin",flag);
+                intent.putExtra("uid",uid);
                 startActivity(intent);
             }
         });

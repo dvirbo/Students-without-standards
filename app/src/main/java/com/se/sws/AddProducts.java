@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ import java.util.Map;
 public class AddProducts extends AppCompatActivity {
     // Edit text info variables
     EditText mCreateTitleOfPost, mCreateContentOfPost, mCreatePhoneOfPost;
+    TextView mAuthorOfPost;
     ImageView mSavePost;
 
     // Firebase credentials - where and how to put the information we want to store
@@ -43,6 +45,8 @@ public class AddProducts extends AppCompatActivity {
     Intent _intent;
     ProgressBar mProgressBarOfCreatePost; // Used when the post is published
     String uniName = "";
+    String uid;
+    boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,9 @@ public class AddProducts extends AppCompatActivity {
         the name of it via an intent (put extra)
         */
         uniName = _intent.getStringExtra("University");
+        uid = _intent.getStringExtra("uid");
+        flag = _intent.getBooleanExtra("isAdmin",false);
+        System.out.println("UID IS: " + uid);
 
         /*
         * Variables below gets the information via the activity_add_product.xml
@@ -65,6 +72,7 @@ public class AddProducts extends AppCompatActivity {
         mCreateContentOfPost = findViewById(R.id.inputNoteText);
         mCreateTitleOfPost = findViewById(R.id.inputNoteTitle);
         mCreatePhoneOfPost = findViewById(R.id.inputPhoneNumber);
+        mAuthorOfPost = findViewById(R.id.addProductAuthor);
         mProgressBarOfCreatePost = findViewById(R.id.progressbarofcreatenote);
 
         /*
@@ -81,6 +89,8 @@ public class AddProducts extends AppCompatActivity {
             String title = mCreateTitleOfPost.getText().toString().trim();
             String content = mCreateContentOfPost.getText().toString().trim();
             String phone = mCreatePhoneOfPost.getText().toString().trim();
+            mAuthorOfPost.setText(this.uid);
+            String author = mAuthorOfPost.getText().toString().trim();
 
             /*
              * All fields are required to fill - if one of em are empty will throw a toast
@@ -98,6 +108,7 @@ public class AddProducts extends AppCompatActivity {
                 note.put("content", content);
                 note.put("phone",phone);
                 note.put("title", title);
+                note.put("uid",author);
 
                 documentReference.set(note).addOnSuccessListener(aVoid -> {
                     Toast.makeText(getApplicationContext(), "Post Created Successfully", Toast.LENGTH_SHORT).show();
@@ -125,7 +136,7 @@ public class AddProducts extends AppCompatActivity {
                             intent = new Intent(AddProducts.this, HebrewUni.class);
                     }
                     assert intent != null;
-                    intent.putExtra("isAdmin",true); // Anyway the user who adds the products is an admin
+                    intent.putExtra("isAdmin",flag); // Anyway the user who adds the products is an admin
                     startActivity(intent);
 
                 }).addOnFailureListener(e -> { // User failed to create the post
@@ -177,7 +188,7 @@ public class AddProducts extends AppCompatActivity {
                 intent = new Intent(AddProducts.this, HebrewUni.class);
         }
         assert intent != null;
-        intent.putExtra("isAdmin",true); // User who adds the post is an admin
+        intent.putExtra("isAdmin",flag); // User who adds the post is an admin
         startActivity(intent);
     }
 

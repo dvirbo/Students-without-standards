@@ -20,6 +20,7 @@ public class Universities extends AppCompatActivity {
     boolean flag;
     Intent _intent;
     private Button move1;
+    String uid;
 
     /*
     Here i've added a Button which will move me from certain screen to another screen
@@ -32,6 +33,7 @@ public class Universities extends AppCompatActivity {
 
         _intent = getIntent();
         flag = _intent.getBooleanExtra("isAdmin", false);
+        uid = _intent.getStringExtra("uid");
 
         /*
         For example here i chose to use the button by clicking on it, it will
@@ -47,6 +49,7 @@ public class Universities extends AppCompatActivity {
                  */
                 Intent intent = new Intent(Universities.this ,InfoAboutUs.class);
                 intent.putExtra("isAdmin",flag);
+                intent.putExtra("uid",uid);
                 startActivity(intent);
             }
         });
@@ -63,6 +66,7 @@ public class Universities extends AppCompatActivity {
                  */
                 Intent intent = new Intent(Universities.this ,Contact.class);
                 intent.putExtra("isAdmin",flag);
+                intent.putExtra("uid",uid);
                 startActivity(intent);
             }
         });
@@ -126,6 +130,7 @@ Moves us to the picked university
 
         assert intent != null;
         intent.putExtra("isAdmin",flag); // Whether the user is an admin or not
+        intent.putExtra("uid",uid);
         startActivity(intent);
 
 

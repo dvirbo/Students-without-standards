@@ -34,6 +34,8 @@ import com.se.sws.Universities;
 import com.se.sws.firebaseModel;
 import com.se.sws.postDetails;
 
+import java.util.Objects;
+
 import static java.time.LocalDateTime.now;
 
 /**
@@ -45,6 +47,8 @@ public class ArielUniversity extends AppCompatActivity {
     boolean flag; // Is user admin or not
     Intent _intent; // Usage in multiple functions
     ImageView mCreatePostsFab; // Background
+    String current_uid;
+    String post_author;
     private FirebaseAuth firebaseAuth;
 
 
@@ -69,6 +73,9 @@ public class ArielUniversity extends AppCompatActivity {
         View ariel = findViewById(R.id.imageAddPostMain_AR); // We click on Ariel University board add post button ('(+)' button)
         _intent = getIntent();
         flag = _intent.getBooleanExtra("isAdmin", false); // Is the user admin or not
+        current_uid = _intent.getStringExtra("uid");
+        post_author = _intent.getStringExtra("model_uid");
+        System.out.println("ArielUniversity, UID IS: " + current_uid);
 
         mCreatePostsFab = (ImageView) ariel;
         firebaseAuth = FirebaseAuth.getInstance();
@@ -84,16 +91,12 @@ public class ArielUniversity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddProducts.class);
                 intent.putExtra("University","AR"); // Pass variables to AddProducts activity
+                intent.putExtra("isAdmin",flag);
+                intent.putExtra("uid",current_uid);
                 startActivity(intent);
             }
         });
 
-        // If user is an admin a post add option will be available
-        if (flag) {
-            imageAddItemMain.setVisibility(View.VISIBLE);
-        } else {
-            imageAddItemMain.setVisibility(View.GONE);
-        }
 
     // Gets all the storage that goes under the path AR>All>items & sort the items by title
         //.collection("Universities").document(uniName).collection("All").document("items")
@@ -111,8 +114,9 @@ public class ArielUniversity extends AppCompatActivity {
                 holder.title.setText(model.getTitle());
                 holder.content.setText(model.getContent());
                 holder.phone.setText(model.getPhone());
+                holder.uid.setText(model.getUid());
                 // So we know which post to delete
-                String docId= postAdapter.getSnapshots().getSnapshot(position).getId();
+                String docId = postAdapter.getSnapshots().getSnapshot(position).getId();
 
                 /*
                  * When post is being pressed and want to be extended
@@ -126,14 +130,16 @@ public class ArielUniversity extends AppCompatActivity {
                         intent.putExtra("title",model.getTitle());
                         intent.putExtra("content",model.getContent());
                         intent.putExtra("phone",model.getPhone());
+                        intent.putExtra("model_uid", model.getUid()); // Current post id
                         intent.putExtra("isAdmin",flag);
                         intent.putExtra("noteId",docId);
+                        intent.putExtra("uid",current_uid);
 
                         v.getContext().startActivity(intent);
                     }
                 });
                 // If user is not an admin will not be able to see the 3 dots & delete a post (part of Admin Panel)
-                if (!flag) popupButton.setVisibility(View.GONE);
+                if (!flag){ popupButton.setVisibility(View.GONE); }
 
                 /*
                  * 3 dots button
@@ -155,7 +161,7 @@ public class ArielUniversity extends AppCompatActivity {
                                     // We choose to delete
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        DocumentReference documentReference=firebaseFirestore.collection("AR").document("All").collection("items").document(docId);
+                                        DocumentReference documentReference=firebaseFirestore.collection("Universities").document("AR").collection("All").document(docId);
                                         documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
@@ -195,7 +201,7 @@ public class ArielUniversity extends AppCompatActivity {
             }
         };
         // After post is deleted do these below
-        mRecyclerView =findViewById(R.id.postsRecyclerView);
+        mRecyclerView = findViewById(R.id.postsRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         staggeredGridLayoutManager=new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
@@ -211,12 +217,14 @@ public class ArielUniversity extends AppCompatActivity {
         private TextView title;
         private TextView content;
         private TextView phone;
+        private TextView uid;
 
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.textTitle);
             content = (TextView) itemView.findViewById(R.id.textSubtitle);
             phone = (TextView) itemView.findViewById(R.id.textPhoneNumber);
+            uid = (TextView) itemView.findViewById(R.id.textAuthorName);
 
         }
     }
@@ -239,6 +247,7 @@ public class ArielUniversity extends AppCompatActivity {
     public void backAriel(View view){
         Intent intent = new Intent(ArielUniversity.this, Universities.class);
         intent.putExtra("isAdmin",flag); // If the user who clicked on the posts is an admin or not
+        intent.putExtra("uid",current_uid);
         startActivity(intent);
     }
 

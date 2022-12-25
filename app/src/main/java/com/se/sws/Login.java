@@ -28,6 +28,7 @@ public class Login extends AppCompatActivity {
     boolean valid = true;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
+    String userId; // Current user
     /*
     Called when the activity is starting, where most initialization go:
     init the firebase store & auth
@@ -83,22 +84,16 @@ public class Login extends AppCompatActivity {
         //extract data from the document
         df.get().addOnSuccessListener(documentSnapshot -> {
             Log.d("TAG","onSuccess" + documentSnapshot.getData());
+            this.userId = uid; // gets the user id
             //identify the access level
-            if (documentSnapshot.getString("isAdmin") != null){
-                //user is admin
-                Intent intent = new Intent(getApplicationContext(), Universities.class);
-                intent.putExtra("isAdmin",flag);
-                startActivity(intent);
-                finish();
-            }
             if (documentSnapshot.getString("isUser") != null){
-                flag = false;
-                //user is user
-                Intent intent = new Intent(getApplicationContext(), Universities.class);
-                intent.putExtra("isAdmin",flag);
-                startActivity(intent);
-                finish();
+                flag = false; // User is a simple user and not an admin
             }
+            Intent intent = new Intent(getApplicationContext(), Universities.class);
+            intent.putExtra("isAdmin",flag);
+            intent.putExtra("uid", userId);
+            startActivity(intent);
+            finish();
         });
     }
 
@@ -123,19 +118,15 @@ public class Login extends AppCompatActivity {
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
             DocumentReference df = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
             df.get().addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.getString("isAdmin") != null){
-                    Intent intent = new Intent(getApplicationContext(), Universities.class);
-                    intent.putExtra("isAdmin",flag);
-                    startActivity(intent);
-                    finish();
-                }
+                this.userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 if (documentSnapshot.getString("isUser") != null){
-                    flag = false;
-                    Intent intent = new Intent(getApplicationContext(), Universities.class);
-                    intent.putExtra("isAdmin",flag);
-                    startActivity(intent);
-                    finish();
+                    flag = false; // User does not have admin privileges
                 }
+                Intent intent = new Intent(getApplicationContext(), Universities.class);
+                intent.putExtra("isAdmin",flag); // Pass the admin flag
+                intent.putExtra("uid", this.userId); // Pass the user id
+                startActivity(intent);
+                finish();
             }).addOnFailureListener(e -> {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getApplicationContext(),Login.class));
