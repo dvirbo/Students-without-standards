@@ -92,16 +92,19 @@ public class Register extends AppCompatActivity {
                     }
 
                     df.set(userInfo);
-
+                    Intent _intent = null;
+                    boolean isAdmin = true;
                     if (isAdminBox.isChecked()) {
-                        startActivity(new Intent(getApplicationContext(), AdminPanel.class));
-                        finish();
+                        _intent = new Intent(getApplicationContext(), Universities.class);
                     }
                     if (isStudentBox.isChecked()) {
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
+                        isAdmin = false;
+                        _intent = new Intent(getApplicationContext(), Universities.class);
                     }
-
+                    assert _intent != null;
+                    _intent.putExtra("isAdmin", isAdmin);
+                    startActivity(_intent);
+                    finish();
 
                 }).addOnFailureListener(e -> Toast.makeText(Register.this, "Failed to Create Account", Toast.LENGTH_SHORT).show());
             }
