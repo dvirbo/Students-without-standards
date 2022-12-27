@@ -70,6 +70,8 @@ public class postDetails extends AppCompatActivity {
         ImageView popupButton = this.findViewById(R.id.menupopbutton); // The 3 dots on the right of each post
 
         // Is the current user who clicked on the post is the author or admin
+        System.out.println("isAdmin? " + flag);
+        System.out.println("User id: " + current_uid);
         if (flag || Objects.equals(current_uid, model_uid)){
             popupButton.setVisibility(View.VISIBLE); // reveal delete button
         }else{

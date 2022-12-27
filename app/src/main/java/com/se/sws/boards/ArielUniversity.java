@@ -75,7 +75,6 @@ public class ArielUniversity extends AppCompatActivity {
         flag = _intent.getBooleanExtra("isAdmin", false); // Is the user admin or not
         current_uid = _intent.getStringExtra("uid");
         post_author = _intent.getStringExtra("model_uid");
-        System.out.println("ArielUniversity, UID IS: " + current_uid);
 
         mCreatePostsFab = (ImageView) ariel;
         firebaseAuth = FirebaseAuth.getInstance();

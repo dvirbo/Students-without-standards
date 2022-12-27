@@ -137,6 +137,7 @@ public class AddProducts extends AppCompatActivity {
                     }
                     assert intent != null;
                     intent.putExtra("isAdmin",flag); // Anyway the user who adds the products is an admin
+                    intent.putExtra("uid",uid);
                     startActivity(intent);
 
                 }).addOnFailureListener(e -> { // User failed to create the post
