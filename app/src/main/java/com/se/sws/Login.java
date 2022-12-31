@@ -89,7 +89,7 @@ public class Login extends AppCompatActivity {
             if (documentSnapshot.getString("isUser") != null){
                 flag = false; // User is a simple user and not an admin
             }
-            Intent intent = new Intent(getApplicationContext(), Universities.class);
+            Intent intent = new Intent(getApplicationContext(), MainMenu.class);
             intent.putExtra("isAdmin",flag);
             intent.putExtra("uid", userId);
             startActivity(intent);
@@ -122,7 +122,7 @@ public class Login extends AppCompatActivity {
                 if (documentSnapshot.getString("isUser") != null){
                     flag = false; // User does not have admin privileges
                 }
-                Intent intent = new Intent(getApplicationContext(), Universities.class);
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                 intent.putExtra("isAdmin",flag); // Pass the admin flag
                 intent.putExtra("uid", this.userId); // Pass the user id
                 startActivity(intent);

@@ -37,7 +37,7 @@ public class InfoAboutUs extends AppCompatActivity {
                 /*
                 Here by valuing the Intent object to bring us back to the Universities class
                  */
-                Intent intent = new Intent(InfoAboutUs.this ,Universities.class);
+                Intent intent = new Intent(InfoAboutUs.this ,MainMenu.class);
 
                 intent.putExtra("isAdmin",flag);
                 intent.putExtra("uid",uid);

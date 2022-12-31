@@ -95,11 +95,11 @@ public class Register extends AppCompatActivity {
                     Intent _intent = null;
                     boolean isAdmin = true;
                     if (isAdminBox.isChecked()) {
-                        _intent = new Intent(getApplicationContext(), Universities.class);
+                        _intent = new Intent(getApplicationContext(), MainMenu.class);
                     }
                     if (isStudentBox.isChecked()) {
                         isAdmin = false;
-                        _intent = new Intent(getApplicationContext(), Universities.class);
+                        _intent = new Intent(getApplicationContext(), MainMenu.class);
                     }
                     assert _intent != null;
                     _intent.putExtra("isAdmin", isAdmin);

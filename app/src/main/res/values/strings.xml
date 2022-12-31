@@ -46,4 +46,16 @@
     <string name="this_application_is_built_for_students_and_intended_for_uploading_products_that_you_wish_donate_to_a_student">This application is built for STUDENTS and intended for uploading products that you wish donate to a student</string>
     <string name="previous">Previous</string>
     <string name="author_name">Author name</string>
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="search">Search</string>
 </resources>

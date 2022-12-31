@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,41 +37,18 @@ public class Universities extends AppCompatActivity {
         flag = _intent.getBooleanExtra("isAdmin", false);
         uid = _intent.getStringExtra("uid");
 
-        /*
-        For example here i chose to use the button by clicking on it, it will
-        pass me to the AboutUs page, which gives details about our project.
-         */
-        move1 = findViewById(R.id.info);
-        //Moves you to the Information page
-        move1.setOnClickListener(new View.OnClickListener() {
+
+        Button back = findViewById(R.id.go_back);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Here how it actually moves us from the Current page which is Univesities
-                CLASS to the InfoAboutUs CLASS
-                 */
-                Intent intent = new Intent(Universities.this ,InfoAboutUs.class);
+                Intent intent = new Intent(Universities.this ,MainMenu.class);
                 intent.putExtra("isAdmin",flag);
                 intent.putExtra("uid",uid);
                 startActivity(intent);
             }
         });
-        /*
-        Here i chose to move us using the Button to the Contact page
-         */
-        move1 = findViewById(R.id.contact);
-        //Moves you to the Information page
-        move1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*
-                Here how it actually moves us from the Universities class to the Contact class
-                 */
-                Intent intent = new Intent(Universities.this ,Contact.class);
-                intent.putExtra("isAdmin",flag);
-                intent.putExtra("uid",uid);
-                startActivity(intent);
-            }
-        });
+
 
     }
     /*
