@@ -17,13 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.se.sws.boards.ArielUniversity;
-import com.se.sws.boards.BenGurion;
-import com.se.sws.boards.HaifaUni;
-import com.se.sws.boards.HebrewUni;
-import com.se.sws.boards.ReichmanUni;
-import com.se.sws.boards.TechnionUni;
-import com.se.sws.boards.TelAvivUni;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,5 @@
 package com.se.sws;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,21 +11,12 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.se.sws.boards.ArielUniversity;
-import com.se.sws.boards.BenGurion;
-import com.se.sws.boards.HaifaUni;
-import com.se.sws.boards.HebrewUni;
-import com.se.sws.boards.ReichmanUni;
-import com.se.sws.boards.TechnionUni;
-import com.se.sws.boards.TelAvivUni;
 
 import java.util.Objects;
 

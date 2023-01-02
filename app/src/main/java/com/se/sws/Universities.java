@@ -4,19 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.se.sws.boards.ArielUniversity;
-import com.se.sws.boards.BenGurion;
-import com.se.sws.boards.HaifaUni;
-import com.se.sws.boards.HebrewUni;
-import com.se.sws.boards.ReichmanUni;
-import com.se.sws.boards.TechnionUni;
-import com.se.sws.boards.TelAvivUni;
+import com.se.sws.boards.Institutions;
 
 /**
  * This Class represent the page of all the universities that exist in our DB
@@ -28,6 +20,7 @@ public class Universities extends AppCompatActivity {
     private Button move1;
     String uid;
     String UserName;
+    String ins; // which institution to go after press Button
 
     /*
     Here i've added a Button which will move me from certain screen to another screen
@@ -75,46 +68,43 @@ public class Universities extends AppCompatActivity {
 
          */
         Intent intent = null;
+
         //If the button pressed is of ariel university , initialize the intent
-        //to be ariel
         if (view == findViewById(R.id.ariel_uni)) {  // ariel:
-            intent = new Intent(getApplicationContext(), ArielUniversity.class);
+            ins = "AR";
+
         }
-        //If the button pressed is of ariel university , initialize the intent
-        //to be Ben-Gurion
+        //If the button pressed is of Ben-Gurion university , initialize the intent
         else if (view == findViewById(R.id.ben_gurion_uni)) { // BGU:
-            intent = new Intent(getApplicationContext(), BenGurion.class);
+            ins = "BGU";
         }
-        //If the button pressed is of ariel university , initialize the intent
-        //to be Tel-aviv
+        //If the button pressed is of Tel-aviv university , initialize the intent
         else if (view == findViewById(R.id.tel_aviv_uni)) {  //TLV
-            intent = new Intent(getApplicationContext(), TelAvivUni.class);
+            ins = "tlv";
         }
-        //If the button pressed is of ariel university , initialize the intent
-        //to be Technion
+        //If the button pressed is of Technion , initialize the intent
         else if (view == findViewById(R.id.technion_uni)) { // tecnion
-            intent = new Intent(getApplicationContext(), TechnionUni.class);
+            ins = "Technion";
         }
-        //If the button pressed is of ariel university , initialize the intent
-        //to be Reichman
+        //If the button pressed is of Reichman , initialize the intent
         else if (view == findViewById(R.id.reichman_uni)) { // reichman
-            intent = new Intent(getApplicationContext(), ReichmanUni.class);
+            ins = "Reicman";
         }
-        //If the button pressed is of ariel university , initialize the intent
-        //to be Haifa
+        //If the button pressed is of Haifa , initialize the intent
         else if (view == findViewById(R.id.haifa_uni)) { // haifa
-            intent = new Intent(getApplicationContext(), HaifaUni.class);
+            ins = "Haifa";
         }
-        //If the button pressed is of ariel university , initialize the intent
+        //If the button pressed is of hebrew university , initialize the intent
         else if (view == findViewById(R.id.hebrew_uni)) {
-            intent = new Intent(getApplicationContext(), HebrewUni.class);
+            ins = "heb";
         }
 
+        intent = new Intent(getApplicationContext(), Institutions.class);
 
-        assert intent != null;
         intent.putExtra("isAdmin", flag); // Whether the user is an admin or not
         intent.putExtra("uid", uid);
         intent.putExtra("UserName", UserName);
+        intent.putExtra("ins", ins);
         startActivity(intent);
 
 

@@ -48,7 +48,7 @@
 
     <ImageView android:id="@+id/back_button_ariel" android:layout_width="56dp"
         android:layout_height="57dp" android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" android:onClick="backAriel"
+        android:layout_marginTop="16dp" android:onClick="backUniversities"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back" />
 

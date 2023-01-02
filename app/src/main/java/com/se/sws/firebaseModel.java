@@ -43,6 +43,14 @@ public class firebaseModel {
     public String getUid() { return uid; }
 
     public void setAuthor(String author) { this.uid = author;}
-
+/*
++ String getTitle
++void setTitle(String title)
++String getContent(String content)
++String getPhone()
++ void setPhone(String phone)
++ void setPhone
++ void setAuthor
+ */
 
 }
