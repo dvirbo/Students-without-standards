@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+
 public class Contact extends AppCompatActivity {
     private EditText mEditTextSubject;
     private EditText mEditTextMessage;
@@ -111,7 +112,4 @@ public class Contact extends AppCompatActivity {
 
 
 
-/*
-By the help of the tutorial: https://www.youtube.com/watch?v=tZ2YEw6SoBU&t=520s&ab_channel=CodinginFlow
- */
 }

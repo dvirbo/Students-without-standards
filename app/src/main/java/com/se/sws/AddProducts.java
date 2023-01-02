@@ -57,7 +57,7 @@ public class AddProducts extends AppCompatActivity {
         /*
         After we press on universities we get the name of the university by passing
         the name of it via an intent (put extra)
-        */
+        **/
         uniName = _intent.getStringExtra("University");
         uid = _intent.getStringExtra("uid");
         flag = _intent.getBooleanExtra("isAdmin",false);
@@ -104,6 +104,8 @@ public class AddProducts extends AppCompatActivity {
                  * Adds the Post information save to FB - phone, content & title
                  */
                 DocumentReference documentReference = firebaseFirestore.collection("Universities").document(uniName).collection("All").document();
+                DocumentReference mainData = firebaseFirestore.collection("Universities").document("BackUp").collection("All").document();
+
                 Map<String, Object> note = new HashMap<>();
                 note.put("content", content);
                 note.put("phone",phone);
@@ -135,6 +137,7 @@ public class AddProducts extends AppCompatActivity {
                         case "heb":
                             intent = new Intent(AddProducts.this, HebrewUni.class);
                     }
+                    mainData.set(note);
                     assert intent != null;
                     intent.putExtra("isAdmin",flag); // Anyway the user who adds the products is an admin
                     intent.putExtra("uid",uid);

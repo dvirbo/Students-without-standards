@@ -18,6 +18,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class represent a registration to our app
+ */
 public class Register extends AppCompatActivity {
     EditText fullName, email, password, phone; // relevant data
     Button registerBtn, goToLogin;

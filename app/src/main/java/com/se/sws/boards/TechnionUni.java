@@ -211,19 +211,19 @@ public class TechnionUni extends AppCompatActivity {
     /**
      * Inner class of posts, used in the function above
      */
-    public class PostViewHolder extends RecyclerView.ViewHolder
+    public static class PostViewHolder extends RecyclerView.ViewHolder
     {
-        private TextView title;
-        private TextView content;
-        private TextView phone;
-        private TextView uid;
+        private final TextView title;
+        private final TextView content;
+        private final TextView phone;
+        private final TextView uid;
 
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = (TextView)itemView.findViewById(R.id.textTitle);
-            content = (TextView) itemView.findViewById(R.id.textSubtitle);
-            phone = (TextView) itemView.findViewById(R.id.textPhoneNumber);
-            uid = (TextView) itemView.findViewById(R.id.textAuthorName);
+            title = itemView.findViewById(R.id.textTitle);
+            content = itemView.findViewById(R.id.textSubtitle);
+            phone = itemView.findViewById(R.id.textPhoneNumber);
+            uid = itemView.findViewById(R.id.textAuthorName);
 
         }
     }

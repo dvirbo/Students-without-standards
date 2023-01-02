@@ -85,15 +85,12 @@ public class BenGurion extends AppCompatActivity {
         // Objects.requireNonNull(getSupportActionBar()).setTitle("Ariel Posts");
 
         ImageView imageAddItemMain = (ImageView) bgu;
-        imageAddItemMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AddProducts.class);
-                intent.putExtra("University","BGU"); // Pass variables to AddProducts activity
-                intent.putExtra("isAdmin",flag);
-                intent.putExtra("uid",current_uid);
-                startActivity(intent);
-            }
+        imageAddItemMain.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), AddProducts.class);
+            intent.putExtra("University","BGU"); // Pass variables to AddProducts activity
+            intent.putExtra("isAdmin",flag);
+            intent.putExtra("uid",current_uid);
+            startActivity(intent);
         });
 
 
@@ -120,22 +117,19 @@ public class BenGurion extends AppCompatActivity {
                 /*
                  * When post is being pressed and want to be extended
                  */
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Post details activity - pass all the information to postDetails class
-                        Intent intent = new Intent(v.getContext(), postDetails.class);
-                        intent.putExtra("university","BGU");
-                        intent.putExtra("title",model.getTitle());
-                        intent.putExtra("content",model.getContent());
-                        intent.putExtra("phone",model.getPhone());
-                        intent.putExtra("model_uid", model.getUid()); // Current post id
-                        intent.putExtra("isAdmin",flag);
-                        intent.putExtra("noteId",docId);
-                        intent.putExtra("uid",current_uid);
+                holder.itemView.setOnClickListener(v -> {
+                    // Post details activity - pass all the information to postDetails class
+                    Intent intent = new Intent(v.getContext(), postDetails.class);
+                    intent.putExtra("university","BGU");
+                    intent.putExtra("title",model.getTitle());
+                    intent.putExtra("content",model.getContent());
+                    intent.putExtra("phone",model.getPhone());
+                    intent.putExtra("model_uid", model.getUid()); // Current post id
+                    intent.putExtra("isAdmin",flag);
+                    intent.putExtra("noteId",docId);
+                    intent.putExtra("uid",current_uid);
 
-                        v.getContext().startActivity(intent);
-                    }
+                    v.getContext().startActivity(intent);
                 });
                 // If user is not an admin will not be able to see the 3 dots & delete a post (part of Admin Panel)
                 if (!flag){ popupButton.setVisibility(View.GONE); }
@@ -143,52 +137,49 @@ public class BenGurion extends AppCompatActivity {
                 /*
                  * 3 dots button
                  */
-                popupButton.setOnClickListener(new View.OnClickListener() {
-                                                   @Override
-                                                   public void onClick(View v) {
+                popupButton.setOnClickListener(v -> {
 
-                                                       PopupMenu popupMenu = new PopupMenu(v.getContext(),v);
-                                                       popupMenu.setGravity(Gravity.END);
-                                                       // Delete button is shown whenever being pressed
-                                                       popupMenu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                                                           @Override
-                                                           public boolean onMenuItemClick(MenuItem item) {
-                                                               AlertDialog.Builder builder = new AlertDialog.Builder(BenGurion.this);
-                                                               builder.setTitle("Delete");
-                                                               builder.setMessage("Are you sure you want to delete?");
-                                                               builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                                                   // We choose to delete
-                                                                   @Override
-                                                                   public void onClick(DialogInterface dialogInterface, int i) {
-                                                                       DocumentReference documentReference=firebaseFirestore.collection("Universities").document("BGU").collection("All").document(docId);
-                                                                       documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                           @Override
-                                                                           public void onSuccess(Void aVoid) {
-                                                                               Toast.makeText(v.getContext(),"Post deleted",Toast.LENGTH_SHORT).show();
-                                                                           }
-                                                                       }).addOnFailureListener(new OnFailureListener() {
-                                                                           @Override
-                                                                           public void onFailure(@NonNull Exception e) {
-                                                                               Toast.makeText(v.getContext(),"Failed To Delete",Toast.LENGTH_SHORT).show();
-                                                                           }
+                    PopupMenu popupMenu = new PopupMenu(v.getContext(),v);
+                    popupMenu.setGravity(Gravity.END);
+                    // Delete button is shown whenever being pressed
+                    popupMenu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(BenGurion.this);
+                            builder.setTitle("Delete");
+                            builder.setMessage("Are you sure you want to delete?");
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                // We choose to delete
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    DocumentReference documentReference=firebaseFirestore.collection("Universities").document("BGU").collection("All").document(docId);
+                                    documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Toast.makeText(v.getContext(),"Post deleted",Toast.LENGTH_SHORT).show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(v.getContext(),"Failed To Delete",Toast.LENGTH_SHORT).show();
+                                        }
 
-                                                                       });
-                                                                   }
-                                                               });
-                                                               // Do nothing when "no" is pressed
-                                                               builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                                                   @Override
-                                                                   public void onClick(DialogInterface dialogInterface, int i) {
+                                    });
+                                }
+                            });
+                            // Do nothing when "no" is pressed
+                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
 
-                                                                   }
-                                                               });
-                                                               builder.create().show();
-                                                               return false;
-                                                           }
-                                                       });
-                                                       popupMenu.show();
-                                                   }
-                                               }
+                                }
+                            });
+                            builder.create().show();
+                            return false;
+                        }
+                    });
+                    popupMenu.show();
+                }
                 );
             }
 
@@ -211,23 +202,22 @@ public class BenGurion extends AppCompatActivity {
     /**
      * Inner class of posts, used in the function above
      */
-    public class PostViewHolder extends RecyclerView.ViewHolder
+    public static class PostViewHolder extends RecyclerView.ViewHolder
     {
-        private TextView title;
-        private TextView content;
-        private TextView phone;
-        private TextView uid;
+        private final TextView title;
+        private final TextView content;
+        private final TextView phone;
+        private final TextView uid;
 
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = (TextView)itemView.findViewById(R.id.textTitle);
-            content = (TextView) itemView.findViewById(R.id.textSubtitle);
-            phone = (TextView) itemView.findViewById(R.id.textPhoneNumber);
-            uid = (TextView) itemView.findViewById(R.id.textAuthorName);
+            title = itemView.findViewById(R.id.textTitle);
+            content = itemView.findViewById(R.id.textSubtitle);
+            phone = itemView.findViewById(R.id.textPhoneNumber);
+            uid = itemView.findViewById(R.id.textAuthorName);
 
         }
     }
-
     @Override
     protected void onStart() {
         super.onStart();

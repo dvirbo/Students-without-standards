@@ -18,7 +18,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
-
+/**
+Firebase User Management Tutorial | Admin / Normal user Management:
+https://www.youtube.com/playlist?list=PLlGT4GXi8_8dGFSIM_nM4eMSVhXVF7cgp
+ */
 
 public class Login extends AppCompatActivity {
 
@@ -29,6 +32,7 @@ public class Login extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userId; // Current user
+    String UserName;
     /*
     Called when the activity is starting, where most initialization go:
     init the firebase store & auth
@@ -85,6 +89,7 @@ public class Login extends AppCompatActivity {
         df.get().addOnSuccessListener(documentSnapshot -> {
             Log.d("TAG","onSuccess" + documentSnapshot.getData());
             this.userId = uid; // gets the user id
+            this.UserName = documentSnapshot.getString("FullName");
             //identify the access level
             if (documentSnapshot.getString("isUser") != null){
                 flag = false; // User is a simple user and not an admin
@@ -92,6 +97,7 @@ public class Login extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), MainMenu.class);
             intent.putExtra("isAdmin",flag);
             intent.putExtra("uid", userId);
+            intent.putExtra("UserName", UserName);
             startActivity(intent);
             finish();
         });
@@ -125,6 +131,7 @@ public class Login extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                 intent.putExtra("isAdmin",flag); // Pass the admin flag
                 intent.putExtra("uid", this.userId); // Pass the user id
+
                 startActivity(intent);
                 finish();
             }).addOnFailureListener(e -> {

@@ -12,14 +12,15 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.se.sws.boards.ArielUniversity;
 
 public class MainMenu extends AppCompatActivity {
     boolean flag;
     Intent _intent;
     boolean newMessage;
-    int count;
     private RelativeLayout move1;
     String uid;
+    String UserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class MainMenu extends AppCompatActivity {
         flag = _intent.getBooleanExtra("isAdmin", false);
         uid = _intent.getStringExtra("uid");
         newMessage = _intent.getBooleanExtra("newMsg",false);
+        UserName = _intent.getStringExtra("UserName");
 
 
         /*
@@ -41,7 +43,7 @@ public class MainMenu extends AppCompatActivity {
         move1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Here how it actually moves us from the Current page which is Univesities
+                /*Here how it actually moves us from the Current page which is Universities
                 CLASS to the InfoAboutUs CLASS
                  */
                 Intent intent = new Intent(MainMenu.this ,InfoAboutUs.class);
@@ -52,15 +54,25 @@ public class MainMenu extends AppCompatActivity {
         });
 
         RelativeLayout uni = findViewById(R.id.MenuUniversitiesButton);
-        uni.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainMenu.this ,Universities.class);
-                intent.putExtra("isAdmin",flag);
-                intent.putExtra("uid",uid);
-                startActivity(intent);
-            }
+        uni.setOnClickListener(view -> {
+            Intent intent = new Intent(MainMenu.this ,Universities.class);
+            intent.putExtra("isAdmin",flag);
+            intent.putExtra("uid",uid);
+            intent.putExtra("UserName", UserName);
+            startActivity(intent);
         });
+
+        // menu_search_button
+        RelativeLayout search = findViewById(R.id.menu_search_button);
+        search.setOnClickListener(view -> {
+            Intent intent = new Intent(MainMenu.this ,search_post.class);
+            intent.putExtra("isAdmin",flag);
+            intent.putExtra("uid",uid);
+            intent.putExtra("UserName", UserName);
+            startActivity(intent);
+        });
+
+
 
         ImageView msg = findViewById(R.id.MenuMessageButtonImage);
         if (!newMessage){
@@ -108,6 +120,7 @@ public class MainMenu extends AppCompatActivity {
         // Called when the activity has detected the user's press of the back key.
         android.os.Process.killProcess(android.os.Process.myPid());
     }
+
 
 
 }

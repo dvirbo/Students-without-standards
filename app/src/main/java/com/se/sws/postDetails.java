@@ -35,12 +35,12 @@ import java.util.Objects;
  */
 public class postDetails extends AppCompatActivity {
 
-    private TextView mTitleOfPostDetail, mContentOfPostDetail, mPhoneOfPostDetail, mAuthorNameDetail;
     private String university; // The university pressed on when entering universities
     private String current_uid;
     private String model_uid;
     private String noteId;
     private Boolean flag; // is the user admin or not
+    private String title;
 
 
     @Override
@@ -48,10 +48,10 @@ public class postDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postdetails);
         // Gets the id of 3 TextViews in the XML file
-        mTitleOfPostDetail = findViewById(R.id.titleofnotedetail);
-        mContentOfPostDetail = findViewById(R.id.contentofnotedetail);
-        mPhoneOfPostDetail = findViewById(R.id.phoneofnotedetail);
-        mAuthorNameDetail = findViewById(R.id.authorNamePostDetail);
+        TextView mTitleOfPostDetail = findViewById(R.id.titleofnotedetail);
+        TextView mContentOfPostDetail = findViewById(R.id.contentofnotedetail);
+        TextView mPhoneOfPostDetail = findViewById(R.id.phoneofnotedetail);
+        TextView mAuthorNameDetail = findViewById(R.id.authorNamePostDetail);
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
         Intent data=getIntent(); // instead of writing getIntent.getStringExtra, getBooleanExtra etc...
@@ -59,6 +59,7 @@ public class postDetails extends AppCompatActivity {
         // Fill every detail on screen
         mContentOfPostDetail.setText(data.getStringExtra("content"));
         mTitleOfPostDetail.setText(data.getStringExtra("title"));
+        title = mTitleOfPostDetail.toString();
         mPhoneOfPostDetail.setText(data.getStringExtra("phone"));
         mAuthorNameDetail.setText(data.getStringExtra("model_uid"));
         model_uid = data.getStringExtra("model_uid");
@@ -80,82 +81,73 @@ public class postDetails extends AppCompatActivity {
         /*
          * 3 dots button
          */
-        popupButton.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) {
+        popupButton.setOnClickListener(v -> {
 
-                                               PopupMenu popupMenu = new PopupMenu(v.getContext(),v);
-                                               popupMenu.setGravity(Gravity.END);
-                                               // Delete button is shown whenever being pressed
-                                               popupMenu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                                                   @Override
-                                                   public boolean onMenuItemClick(MenuItem item) {
-                                                       AlertDialog.Builder builder = new AlertDialog.Builder(postDetails.this);
-                                                       builder.setTitle("Delete");
-                                                       builder.setMessage("Are you sure you want to delete?");
-                                                       builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                                           // We choose to delete
-                                                           @Override
-                                                           public void onClick(DialogInterface dialogInterface, int i) {
-                                                               DocumentReference documentReference = firebaseFirestore.collection("Universities").document(university).collection("All").document(noteId);
-                                                               documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                   @Override
-                                                                   public void onSuccess(Void aVoid) {
-                                                                       Toast.makeText(v.getContext(),"Post deleted",Toast.LENGTH_SHORT).show();
-                                                                        // Go to back screen
-                                                                       Intent intent = null;
-                                                                       switch (university) {
-                                                                           case "AR":
-                                                                               intent = new Intent(postDetails.this, ArielUniversity.class);
-                                                                               break;
-                                                                           case "BGU":
-                                                                               intent = new Intent(postDetails.this, BenGurion.class);
-                                                                               break;
-                                                                           case "Haifa":
-                                                                               intent = new Intent(postDetails.this, HaifaUni.class);
-                                                                               break;
-                                                                           case "Reicman":
-                                                                               intent = new Intent(postDetails.this, ReichmanUni.class);
-                                                                               break;
-                                                                           case "Technion":
-                                                                               intent = new Intent(postDetails.this, TechnionUni.class);
-                                                                               break;
-                                                                           case "tlv":
-                                                                               intent = new Intent(postDetails.this, TelAvivUni.class);
-                                                                               break;
-                                                                           case "heb":
-                                                                               intent = new Intent(postDetails.this, HebrewUni.class);
-                                                                       }
-                                                                       assert intent != null;
-                                                                       intent.putExtra("isAdmin",flag); // If the user who clicked on the posts is an admin or not
-                                                                       intent.putExtra("uid",current_uid);
-                                                                       intent.putExtra("model_uid",model_uid);
-                                                                       startActivity(intent);
+            PopupMenu popupMenu = new PopupMenu(v.getContext(),v);
+            popupMenu.setGravity(Gravity.END);
+            // Delete button is shown whenever being pressed
+            popupMenu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(postDetails.this);
+                    builder.setTitle("Delete");
+                    builder.setMessage("Are you sure you want to delete?");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        // We choose to delete
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            DocumentReference documentReference = firebaseFirestore.collection("Universities").document(university).collection("All").document(noteId);
+                            documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(v.getContext(),"Post deleted",Toast.LENGTH_SHORT).show();
+                                     // Go to back screen
+                                    Intent intent = null;
+                                    switch (university) {
+                                        case "AR":
+                                            intent = new Intent(postDetails.this, ArielUniversity.class);
+                                            break;
+                                        case "BGU":
+                                            intent = new Intent(postDetails.this, BenGurion.class);
+                                            break;
+                                        case "Haifa":
+                                            intent = new Intent(postDetails.this, HaifaUni.class);
+                                            break;
+                                        case "Reicman":
+                                            intent = new Intent(postDetails.this, ReichmanUni.class);
+                                            break;
+                                        case "Technion":
+                                            intent = new Intent(postDetails.this, TechnionUni.class);
+                                            break;
+                                        case "tlv":
+                                            intent = new Intent(postDetails.this, TelAvivUni.class);
+                                            break;
+                                        case "heb":
+                                            intent = new Intent(postDetails.this, HebrewUni.class);
+                                    }
+                                    assert intent != null;
+                                    intent.putExtra("isAdmin",flag); // If the user who clicked on the posts is an admin or not
+                                    intent.putExtra("uid",current_uid);
+                                    intent.putExtra("model_uid",model_uid);
+                                    startActivity(intent);
 
-                                                                   }
-                                                               }).addOnFailureListener(new OnFailureListener() {
-                                                                   @Override
-                                                                   public void onFailure(@NonNull Exception e) {
-                                                                       Toast.makeText(v.getContext(),"Failed To Delete",Toast.LENGTH_SHORT).show();
-                                                                   }
+                                }
+                            }).addOnFailureListener(e -> Toast.makeText(v.getContext(),"Failed To Delete",Toast.LENGTH_SHORT).show());
+                        }
+                    });
+                    // Do nothing when "no" is pressed
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
-                                                               });
-                                                           }
-                                                       });
-                                                       // Do nothing when "no" is pressed
-                                                       builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                                           @Override
-                                                           public void onClick(DialogInterface dialogInterface, int i) {
-
-                                                           }
-                                                       });
-                                                       builder.create().show();
-                                                       return false;
-                                                   }
-                                               });
-                                               popupMenu.show();
-                                           }
-                                       }
+                        }
+                    });
+                    builder.create().show();
+                    return false;
+                }
+            });
+            popupMenu.show();
+        }
         );
     }
 
@@ -186,8 +178,8 @@ public class postDetails extends AppCompatActivity {
         }
         assert intent != null;
         intent.putExtra("isAdmin",flag); // If the user who clicked on the posts is an admin or not
-        intent.putExtra("uid",current_uid);
-        intent.putExtra("model_uid",model_uid);
+        intent.putExtra("uid",current_uid); // current user
+        intent.putExtra("model_uid",model_uid); // author of thr post
         startActivity(intent);
     }
 

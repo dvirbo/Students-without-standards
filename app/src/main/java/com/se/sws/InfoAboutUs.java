@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
 public class InfoAboutUs extends AppCompatActivity {
 
-    /*
-    This class represents the Information about us (About our application)
+    /**
+     * This class show information's about our project.
+     * By the help of the tutorial: https://www.youtube.com/watch?v=tZ2YEw6SoBU&t=520s&ab_channel=CodinginFlow
      */
 
     private Button move2;
