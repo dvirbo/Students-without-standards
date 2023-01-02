@@ -20,7 +20,7 @@ import com.se.sws.boards.TelAvivUni;
 
 /**
  * This Class represent the page of all the universities that exist in our DB
- * by click on each Uni we get to the desire board
+ * by click on each Uni we get to the desire board...
  */
 public class Universities extends AppCompatActivity {
     boolean flag;
