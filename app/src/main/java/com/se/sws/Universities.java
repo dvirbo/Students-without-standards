@@ -29,7 +29,6 @@ public class Universities extends AppCompatActivity {
     String uid;
     String UserName;
 
-
     /*
     Here i've added a Button which will move me from certain screen to another screen
      */
