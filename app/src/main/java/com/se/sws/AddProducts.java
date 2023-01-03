@@ -113,7 +113,7 @@ public class AddProducts extends AppCompatActivity {
                     mainData.set(note);
                     intent.putExtra("isAdmin",flag); // Anyway the user who adds the products is an admin
                     intent.putExtra("uid",uid);
-                    intent.putExtra("University",uniName);
+                    intent.putExtra("ins",uniName);
                     startActivity(intent);
                 }).addOnFailureListener(e -> { // User failed to create the post
                     Toast.makeText(getApplicationContext(), "Failed To Create Post", Toast.LENGTH_SHORT).show();
@@ -142,7 +142,7 @@ public class AddProducts extends AppCompatActivity {
     public void backArrowAdd(View view){
         Intent intent;
         intent = new Intent(AddProducts.this, Institutions.class);
-        intent.putExtra("University",uniName);
+        intent.putExtra("ins",uniName);
         intent.putExtra("uid",uid);
         intent.putExtra("isAdmin",flag); // User who adds the post is an admin
         startActivity(intent);
