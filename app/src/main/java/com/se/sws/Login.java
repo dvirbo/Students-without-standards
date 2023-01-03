@@ -125,13 +125,14 @@ public class Login extends AppCompatActivity {
             DocumentReference df = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
             df.get().addOnSuccessListener(documentSnapshot -> {
                 this.userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                this.UserName = documentSnapshot.getString("FullName");
                 if (documentSnapshot.getString("isUser") != null){
                     flag = false; // User does not have admin privileges
                 }
                 Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                 intent.putExtra("isAdmin",flag); // Pass the admin flag
                 intent.putExtra("uid", this.userId); // Pass the user id
-
+                intent.putExtra("UserName", UserName);
                 startActivity(intent);
                 finish();
             }).addOnFailureListener(e -> {

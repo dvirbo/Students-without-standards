@@ -40,6 +40,7 @@ public class AddProducts extends AppCompatActivity {
     ProgressBar mProgressBarOfCreatePost; // Used when the post is published
     String uniName = "";
     String uid;
+    String name;
     boolean flag;
 
     @Override
@@ -54,8 +55,9 @@ public class AddProducts extends AppCompatActivity {
         **/
         uniName = _intent.getStringExtra("University");
         uid = _intent.getStringExtra("uid");
+        name = _intent.getStringExtra("UserName");
+
         flag = _intent.getBooleanExtra("isAdmin",false);
-        System.out.println("UID IS: " + uid);
 
         /*
         * Variables below gets the information via the activity_add_product.xml
@@ -83,7 +85,7 @@ public class AddProducts extends AppCompatActivity {
             String title = mCreateTitleOfPost.getText().toString().trim();
             String content = mCreateContentOfPost.getText().toString().trim();
             String phone = mCreatePhoneOfPost.getText().toString().trim();
-            mAuthorOfPost.setText(this.uid);
+            mAuthorOfPost.setText(this.name);
             String author = mAuthorOfPost.getText().toString().trim();
 
             /*
@@ -144,6 +146,7 @@ public class AddProducts extends AppCompatActivity {
         intent = new Intent(AddProducts.this, Institutions.class);
         intent.putExtra("ins",uniName);
         intent.putExtra("uid",uid);
+        intent.putExtra("UserName",name);
         intent.putExtra("isAdmin",flag); // User who adds the post is an admin
         startActivity(intent);
     }

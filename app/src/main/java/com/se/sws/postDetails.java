@@ -31,6 +31,7 @@ public class postDetails extends AppCompatActivity {
     private String model_uid;
     private String noteId;
     private Boolean flag; // is the user admin or not
+    private String name;
     private String title;
 
 
@@ -55,6 +56,7 @@ public class postDetails extends AppCompatActivity {
         mAuthorNameDetail.setText(data.getStringExtra("model_uid"));
         model_uid = data.getStringExtra("model_uid");
         noteId = data.getStringExtra("noteId");
+        name = data.getStringExtra("UserName");
 
         // Will be used in back-arrow function (which board to return)
         this.university = data.getStringExtra("university");
@@ -96,6 +98,7 @@ public class postDetails extends AppCompatActivity {
                                     Intent intent = new Intent(postDetails.this, Institutions.class);
                                     intent.putExtra("isAdmin",flag); // If the user who clicked on the posts is an admin or not
                                     intent.putExtra("uid",current_uid);
+                                    intent.putExtra("UserName",name);
                                     intent.putExtra("model_uid",model_uid);
                                     intent.putExtra("ins",university);
                                     startActivity(intent);
@@ -126,6 +129,7 @@ public class postDetails extends AppCompatActivity {
         intent.putExtra("ins",university);
         intent.putExtra("isAdmin",flag); // If the user who clicked on the posts is an admin or not
         intent.putExtra("uid",current_uid); // current user
+        intent.putExtra("UserName",name);
         intent.putExtra("model_uid",model_uid); // author of thr post
         startActivity(intent);
     }

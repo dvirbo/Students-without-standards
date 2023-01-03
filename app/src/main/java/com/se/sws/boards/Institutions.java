@@ -146,7 +146,7 @@ public class Institutions extends AppCompatActivity {
                 holder.title.setText(model.getTitle());
                 holder.content.setText(model.getContent());
                 holder.phone.setText(model.getPhone());
-                holder.uid.setText(model.getUid());
+                holder.name.setText(model.getName());
                 // So we know which post to delete
                 String docId = postAdapter.getSnapshots().getSnapshot(position).getId();
 
@@ -164,6 +164,7 @@ public class Institutions extends AppCompatActivity {
                     intent.putExtra("isAdmin", flag);
                     intent.putExtra("noteId", docId);
                     intent.putExtra("uid", current_uid);
+                    intent.putExtra("UserName", UserName);
 
                     v.getContext().startActivity(intent);
                 });
@@ -242,14 +243,14 @@ public class Institutions extends AppCompatActivity {
         private final TextView title;
         private final TextView content;
         private final TextView phone;
-        private final TextView uid;
+        private final TextView name;
 
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textTitle);
             content = itemView.findViewById(R.id.textSubtitle);
             phone = itemView.findViewById(R.id.textPhoneNumber);
-            uid = itemView.findViewById(R.id.textAuthorName);
+            name = itemView.findViewById(R.id.textAuthorName);
 
         }
     }
@@ -273,6 +274,7 @@ public class Institutions extends AppCompatActivity {
         Intent intent = new Intent(Institutions.this, Universities.class);
         intent.putExtra("isAdmin", flag); // If the user who clicked on the posts is an admin or not
         intent.putExtra("uid", current_uid);
+        intent.putExtra("UserName",UserName);
         startActivity(intent);
     }
 }
