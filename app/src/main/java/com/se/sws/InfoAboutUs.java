@@ -24,6 +24,7 @@ public class InfoAboutUs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_about_us);
+
         boolean flag = getIntent().getBooleanExtra("isAdmin",false);
         uid = getIntent().getStringExtra("uid");
         /*

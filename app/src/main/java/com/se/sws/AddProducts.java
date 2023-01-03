@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.se.sws.boards.Institutions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -107,35 +108,13 @@ public class AddProducts extends AppCompatActivity {
 
                 documentReference.set(note).addOnSuccessListener(aVoid -> {
                     Toast.makeText(getApplicationContext(), "Post Created Successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = null; // Declare the intent once so we use it more efficiently instead of starting it every time we want to move into another university board
-                    switch (uniName) {
-                        case "AR":
-                            intent = new Intent(AddProducts.this, ArielUniversity.class);
-                            break;
-                        case "BGU":
-                            intent = new Intent(AddProducts.this, BenGurion.class);
-                            break;
-                        case "Haifa":
-                            intent = new Intent(AddProducts.this, HaifaUni.class);
-                            break;
-                        case "Reicman":
-                            intent = new Intent(AddProducts.this, ReichmanUni.class);
-                            break;
-                        case "Technion":
-                            intent = new Intent(AddProducts.this, TechnionUni.class);
-                            break;
-                        case "tlv":
-                            intent = new Intent(AddProducts.this, TelAvivUni.class);
-                            break;
-                        case "heb":
-                            intent = new Intent(AddProducts.this, HebrewUni.class);
-                    }
+                    Intent intent; // Declare the intent once so we use it more efficiently instead of starting it every time we want to move into another university board
+                    intent = new Intent(AddProducts.this, Institutions.class);
                     mainData.set(note);
-                    assert intent != null;
                     intent.putExtra("isAdmin",flag); // Anyway the user who adds the products is an admin
                     intent.putExtra("uid",uid);
+                    intent.putExtra("University",uniName);
                     startActivity(intent);
-
                 }).addOnFailureListener(e -> { // User failed to create the post
                     Toast.makeText(getApplicationContext(), "Failed To Create Post", Toast.LENGTH_SHORT).show();
                     mProgressBarOfCreatePost.setVisibility(View.INVISIBLE);
@@ -161,30 +140,10 @@ public class AddProducts extends AppCompatActivity {
 
     // Which board to return to
     public void backArrowAdd(View view){
-        Intent intent = null;
-        switch (uniName) {
-            case "AR":
-                intent = new Intent(AddProducts.this, ArielUniversity.class);
-                break;
-            case "BGU":
-                intent = new Intent(AddProducts.this, BenGurion.class);
-                break;
-            case "Haifa":
-                intent = new Intent(AddProducts.this, HaifaUni.class);
-                break;
-            case "Reicman":
-                intent = new Intent(AddProducts.this, ReichmanUni.class);
-                break;
-            case "Technion":
-                intent = new Intent(AddProducts.this, TechnionUni.class);
-                break;
-            case "tlv":
-                intent = new Intent(AddProducts.this, TelAvivUni.class);
-                break;
-            case "heb":
-                intent = new Intent(AddProducts.this, HebrewUni.class);
-        }
-        assert intent != null;
+        Intent intent;
+        intent = new Intent(AddProducts.this, Institutions.class);
+        intent.putExtra("University",uniName);
+        intent.putExtra("uid",uid);
         intent.putExtra("isAdmin",flag); // User who adds the post is an admin
         startActivity(intent);
     }

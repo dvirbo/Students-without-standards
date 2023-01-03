@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.se.sws.boards.Institutions;
 
 import java.util.Objects;
 
@@ -92,33 +93,11 @@ public class postDetails extends AppCompatActivity {
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(v.getContext(),"Post deleted",Toast.LENGTH_SHORT).show();
                                      // Go to back screen
-                                    Intent intent = null;
-                                    switch (university) {
-                                        case "AR":
-                                            intent = new Intent(postDetails.this, ArielUniversity.class);
-                                            break;
-                                        case "BGU":
-                                            intent = new Intent(postDetails.this, BenGurion.class);
-                                            break;
-                                        case "Haifa":
-                                            intent = new Intent(postDetails.this, HaifaUni.class);
-                                            break;
-                                        case "Reicman":
-                                            intent = new Intent(postDetails.this, ReichmanUni.class);
-                                            break;
-                                        case "Technion":
-                                            intent = new Intent(postDetails.this, TechnionUni.class);
-                                            break;
-                                        case "tlv":
-                                            intent = new Intent(postDetails.this, TelAvivUni.class);
-                                            break;
-                                        case "heb":
-                                            intent = new Intent(postDetails.this, HebrewUni.class);
-                                    }
-                                    assert intent != null;
+                                    Intent intent = new Intent(postDetails.this, Institutions.class);
                                     intent.putExtra("isAdmin",flag); // If the user who clicked on the posts is an admin or not
                                     intent.putExtra("uid",current_uid);
                                     intent.putExtra("model_uid",model_uid);
+                                    intent.putExtra("ins",university);
                                     startActivity(intent);
 
                                 }
@@ -143,30 +122,8 @@ public class postDetails extends AppCompatActivity {
 
     // Which board to return to
     public void backArrow(View view){
-        Intent intent = null;
-        switch (university) {
-            case "AR":
-                intent = new Intent(postDetails.this, ArielUniversity.class);
-                break;
-            case "BGU":
-                intent = new Intent(postDetails.this, BenGurion.class);
-                break;
-            case "Haifa":
-                intent = new Intent(postDetails.this, HaifaUni.class);
-                break;
-            case "Reicman":
-                intent = new Intent(postDetails.this, ReichmanUni.class);
-                break;
-            case "Technion":
-                intent = new Intent(postDetails.this, TechnionUni.class);
-                break;
-            case "tlv":
-                intent = new Intent(postDetails.this, TelAvivUni.class);
-                break;
-            case "heb":
-                intent = new Intent(postDetails.this, HebrewUni.class);
-        }
-        assert intent != null;
+        Intent intent = new Intent(postDetails.this, Institutions.class);
+        intent.putExtra("ins",university);
         intent.putExtra("isAdmin",flag); // If the user who clicked on the posts is an admin or not
         intent.putExtra("uid",current_uid); // current user
         intent.putExtra("model_uid",model_uid); // author of thr post
