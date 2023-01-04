@@ -146,7 +146,8 @@ public class Institutions extends AppCompatActivity {
                 holder.title.setText(model.getTitle());
                 holder.content.setText(model.getContent());
                 holder.phone.setText(model.getPhone());
-                holder.name.setText(model.getName());
+                holder.uid.setText(model.getUid());
+
                 // So we know which post to delete
                 String docId = postAdapter.getSnapshots().getSnapshot(position).getId();
 
@@ -161,6 +162,7 @@ public class Institutions extends AppCompatActivity {
                     intent.putExtra("content", model.getContent());
                     intent.putExtra("phone", model.getPhone());
                     intent.putExtra("model_uid", model.getUid()); // Current post id
+                    System.out.println("line 166, modeluid: " + model.getUid());
                     intent.putExtra("isAdmin", flag);
                     intent.putExtra("noteId", docId);
                     intent.putExtra("uid", current_uid);
@@ -243,14 +245,15 @@ public class Institutions extends AppCompatActivity {
         private final TextView title;
         private final TextView content;
         private final TextView phone;
-        private final TextView name;
+        private final TextView uid;
 
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textTitle);
             content = itemView.findViewById(R.id.textSubtitle);
             phone = itemView.findViewById(R.id.textPhoneNumber);
-            name = itemView.findViewById(R.id.textAuthorName);
+            uid = itemView.findViewById(R.id.textAuthorName);
+
 
         }
     }

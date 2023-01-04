@@ -28,7 +28,7 @@ import java.util.Map;
 public class AddProducts extends AppCompatActivity {
     // Edit text info variables
     EditText mCreateTitleOfPost, mCreateContentOfPost, mCreatePhoneOfPost;
-    TextView mAuthorOfPost;
+    TextView mAuthorOfPost, mUidOfPost;
     ImageView mSavePost;
 
     // Firebase credentials - where and how to put the information we want to store
@@ -58,7 +58,7 @@ public class AddProducts extends AppCompatActivity {
         name = _intent.getStringExtra("UserName");
 
         flag = _intent.getBooleanExtra("isAdmin",false);
-
+        System.out.println("line 61: uid is : " + uid + "\nname is: " + name);
         /*
         * Variables below gets the information via the activity_add_product.xml
         * Whatever we fill goes in these boys except for the progress bar which we do not fill
@@ -69,6 +69,7 @@ public class AddProducts extends AppCompatActivity {
         mCreateTitleOfPost = findViewById(R.id.inputNoteTitle);
         mCreatePhoneOfPost = findViewById(R.id.inputPhoneNumber);
         mAuthorOfPost = findViewById(R.id.addProductAuthor);
+        mUidOfPost = findViewById(R.id.addProductUid);
         mProgressBarOfCreatePost = findViewById(R.id.progressbarofcreatenote);
 
         /*
@@ -86,7 +87,9 @@ public class AddProducts extends AppCompatActivity {
             String content = mCreateContentOfPost.getText().toString().trim();
             String phone = mCreatePhoneOfPost.getText().toString().trim();
             mAuthorOfPost.setText(this.name);
+            mUidOfPost.setText(this.uid);
             String author = mAuthorOfPost.getText().toString().trim();
+            String uid = mUidOfPost.getText().toString().trim();
 
             /*
              * All fields are required to fill - if one of em are empty will throw a toast
@@ -106,15 +109,18 @@ public class AddProducts extends AppCompatActivity {
                 note.put("content", content);
                 note.put("phone",phone);
                 note.put("title", title);
-                note.put("uid",author);
+                note.put("name",name);
+                note.put("uid",uid);
 
                 documentReference.set(note).addOnSuccessListener(aVoid -> {
                     Toast.makeText(getApplicationContext(), "Post Created Successfully", Toast.LENGTH_SHORT).show();
+                    
                     Intent intent; // Declare the intent once so we use it more efficiently instead of starting it every time we want to move into another university board
                     intent = new Intent(AddProducts.this, Institutions.class);
                     mainData.set(note);
                     intent.putExtra("isAdmin",flag); // Anyway the user who adds the products is an admin
                     intent.putExtra("uid",uid);
+                    intent.putExtra("UserName",name);
                     intent.putExtra("ins",uniName);
                     startActivity(intent);
                 }).addOnFailureListener(e -> { // User failed to create the post

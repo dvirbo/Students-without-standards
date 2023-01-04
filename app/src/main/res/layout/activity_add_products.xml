@@ -34,6 +34,20 @@
                 android:textSize="@dimen/_12ssp"
                 android:visibility="gone" />
 
+            <TextView
+                android:id="@+id/addProductUid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:fontFamily="@font/ubuntu_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                android:visibility="gone" />
+
             <EditText
                 android:id="@+id/inputNoteTitle"
                 android:layout_width="match_parent"

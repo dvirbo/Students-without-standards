@@ -3,6 +3,7 @@ package com.se.sws;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,15 +12,24 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.se.sws.boards.Institutions;
 
 import java.util.Objects;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Whenever we extend a post we use this class
@@ -33,7 +43,8 @@ public class postDetails extends AppCompatActivity {
     private Boolean flag; // is the user admin or not
     private String name;
     private String title;
-
+    private String author;
+    String s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +64,26 @@ public class postDetails extends AppCompatActivity {
         mTitleOfPostDetail.setText(data.getStringExtra("title"));
         title = mTitleOfPostDetail.toString();
         mPhoneOfPostDetail.setText(data.getStringExtra("phone"));
-        mAuthorNameDetail.setText(data.getStringExtra("model_uid"));
         model_uid = data.getStringExtra("model_uid");
+
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("Users").document(model_uid);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        s = document.getString("FullName");
+                        mAuthorNameDetail.setText(s);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
         noteId = data.getStringExtra("noteId");
         name = data.getStringExtra("UserName");
 
@@ -66,6 +95,7 @@ public class postDetails extends AppCompatActivity {
         // Is the current user who clicked on the post is the author or admin
         System.out.println("isAdmin? " + flag);
         System.out.println("User id: " + current_uid);
+        System.out.println("Model uid id: " + model_uid);
         if (flag || Objects.equals(current_uid, model_uid)){
             popupButton.setVisibility(View.VISIBLE); // reveal delete button
         }else{
@@ -129,7 +159,7 @@ public class postDetails extends AppCompatActivity {
         intent.putExtra("ins",university);
         intent.putExtra("isAdmin",flag); // If the user who clicked on the posts is an admin or not
         intent.putExtra("uid",current_uid); // current user
-        intent.putExtra("UserName",name);
+        intent.putExtra("UserName",name); // Current username
         intent.putExtra("model_uid",model_uid); // author of thr post
         startActivity(intent);
     }
