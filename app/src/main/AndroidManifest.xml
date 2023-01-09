@@ -10,57 +10,49 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".boards.Institutions"
+            android:name=".CommentsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainMenu"
+            android:name=".InstitutionsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Contact"
+            android:name=".MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".InfoAboutUs"
+            android:name=".ContactActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".postDetails"
+            android:name=".InfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Categories"
-            android:exported="false"
-            android:parentActivityName=".Universities">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Universities"
+            android:name=".Adapter.PostAdapter"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MessageToAdmin"
+            android:name=".UniversitiesActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -74,7 +66,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".AddProducts"
+            android:name=".PostActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <meta-data
@@ -82,15 +74,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Stats"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity android:name=".AdminPanel" />
-        <activity
-            android:name=".Login"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -98,8 +82,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".RegisterActivity" />
     </application>
 
 </manifest>

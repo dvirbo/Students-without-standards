@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.se.sws.Model.Post;
 
 public class search_post extends AppCompatActivity {
     boolean flag; // Is user admin or not
@@ -39,7 +40,7 @@ public class search_post extends AppCompatActivity {
      * We connect FB and the app together here
      */
     //FirestoreRecyclerAdapter<firebaseModel, search_post.PostViewHolder> postAdapter;
-    FirestoreRecyclerOptions<firebaseModel> allUsersPosts;
+    FirestoreRecyclerOptions<Post> allUsersPosts;
 
     public search_post() {
         // Required empty public constructor
@@ -63,7 +64,7 @@ public class search_post extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         Query query = firebaseFirestore.collection("Universities").document("backUp").collection("All").orderBy("title", Query.Direction.ASCENDING);
         // Connect the query above with the adapter declared on the start
-        allUsersPosts = new FirestoreRecyclerOptions.Builder<firebaseModel>().setQuery(query, firebaseModel.class).build();
+        allUsersPosts = new FirestoreRecyclerOptions.Builder<Post>().setQuery(query, Post.class).build();
 
 
     }

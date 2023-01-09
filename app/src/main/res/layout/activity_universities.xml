@@ -1,151 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Universities"
-    android:background="@color/colorPrimary_1"
-    android:layout_marginStart="10sp"
-    android:layout_marginEnd="10sp">
+    tools:context=".UniversitiesActivity"
+    android:background="@drawable/background_post"
+    android:backgroundTint="@color/colorPrimaryDark_1"
+    android:orientation="vertical">
+    <!--    android:background="@color/colorPrimary_1"-->
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/relativeLayout"-->
+<!--        android:layout_width="358dp"-->
+<!--        android:layout_height="102dp"-->
+<!--        android:layout_marginEnd="4dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0">-->
 
 
 
-    <LinearLayout
+<!--    </RelativeLayout>-->
+
+    <TextView
+        android:id="@+id/UniversitiesView"
+        android:layout_width="351dp"
+        android:layout_height="104dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-1dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:padding="30dp"
+        android:text="@string/universities"
+        android:textAllCaps="true"
+        android:textColor="@color/colorNoteColor5"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/ariel_uni"
+        android:layout_width="130dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:onClick="UniversitiesBoard"
+        android:padding="30dp"
+        android:text="@string/ariel"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/go_back"
+        android:background="@drawable/corners"/>
+
+    <Button
+        android:id="@+id/tel_aviv_uni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:ignore="ExtraText">
+        android:layout_marginTop="24dp"
+        android:onClick="UniversitiesBoard"
+        android:padding="30dp"
+        android:text="@string/tel_aviv"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ariel_uni"
+        android:background="@drawable/corners"/>
+
+    <Button
+        android:id="@+id/ben_gurion_uni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="28dp"
+        android:onClick="UniversitiesBoard"
+        android:padding="30dp"
+        android:text="@string/ben_gurion"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tel_aviv_uni"
+        android:background="@drawable/corners"/>
+
+    <Button
+        android:id="@+id/hebrew_uni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="32dp"
+        android:onClick="UniversitiesBoard"
+        android:padding="30dp"
+        android:text="@string/hebrew"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ben_gurion_uni"
+        android:background="@drawable/corners"/>
+
+    <Button
+        android:id="@+id/technion_uni"
+        android:layout_width="167dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="24dp"
+        android:onClick="UniversitiesBoard"
+        android:padding="30dp"
+        android:text="@string/technion"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ariel_uni"
+        android:background="@drawable/corners"/>
+
+    <Button
+        android:id="@+id/reichman_uni"
+        android:layout_width="wrap_content"
+        android:layout_height="83dp"
+        android:layout_marginTop="16dp"
+        android:onClick="UniversitiesBoard"
+        android:padding="30dp"
+        android:text="@string/reichman"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.749"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/go_back"
+        android:background="@drawable/corners"/>
+
+    <Button
+        android:id="@+id/haifa_uni"
+        android:layout_width="156dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="28dp"
+        android:onClick="UniversitiesBoard"
+        android:padding="30dp"
+        android:text="@string/haifa"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tel_aviv_uni"
+        android:background="@drawable/corners"/>
+
+    <Button
+        android:id="@+id/go_back"
+        android:layout_width="74dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+
+        android:background="@drawable/ic_back"
+        android:padding="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
-            android:id="@+id/UniversitiesView"
-            android:layout_width="379dp"
-            android:layout_height="103dp"
-            android:fontFamily="sans-serif-black"
-            android:padding="30dp"
-            android:text="@string/universities"
-            android:textAllCaps="true"
-            android:textSize="40sp"
-            android:textStyle="italic"
-            android:textAlignment="center"/>
-        /*
-        Here
-        */
-
-        <Button
-            android:id="@+id/ariel_uni"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50sp"
-            android:padding="30dp"
-            android:text="@string/ariel"
-            android:textStyle="italic"
-            android:textSize="20sp"
-            android:onClick="UniversitiesBoard"
-            />
-        /*
-        Here the button sends the mail
-        */
-
-        <Button
-            android:id="@+id/tel_aviv_uni"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50sp"
-            android:padding="30dp"
-            android:text="@string/tel_aviv"
-            android:textStyle="italic"
-            android:onClick="UniversitiesBoard"
-            android:textSize="20sp" />
-        /*
-        Here the button sends the mail
-        */
-
-        <Button
-            android:id="@+id/ben_gurion_uni"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50sp"
-            android:padding="30dp"
-            android:text="@string/ben_gurion"
-            android:textStyle="italic"
-            android:textSize="20sp"
-            android:onClick="UniversitiesBoard"/>
-        /*
-        Here the button sends the mail
-        */
-
-        <Button
-            android:id="@+id/hebrew_uni"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50sp"
-            android:padding="30dp"
-            android:text="@string/hebrew"
-            android:textStyle="italic"
-            android:textSize="20sp"
-            android:onClick="UniversitiesBoard"/>
-        /*
-        Here the button sends the mail
-        */
-
-        <Button
-            android:id="@+id/technion_uni"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50sp"
-            android:padding="30dp"
-            android:text="@string/technion"
-            android:textStyle="italic"
-            android:onClick="UniversitiesBoard"
-            android:textSize="20sp"/>
-        /*
-        Here the button sends the mail
-        */
-
-        <Button
-            android:id="@+id/reichman_uni"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50sp"
-            android:padding="30dp"
-            android:text="@string/reichman"
-            android:textStyle="italic"
-            android:onClick="UniversitiesBoard"
-            android:textSize="20sp"/>
-
-        /*
-        Here the button sends the mail
-        */
-        <Button
-            android:id="@+id/haifa_uni"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50sp"
-            android:padding="30dp"
-            android:text="@string/haifa"
-            android:textStyle="italic"
-            android:onClick="UniversitiesBoard"
-            android:textSize="20sp"/>
-
-        <Button
-            android:id="@+id/go_back"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50sp"
-            android:padding="30dp"
-            android:text="back"/>
-
-
-
-
-    </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

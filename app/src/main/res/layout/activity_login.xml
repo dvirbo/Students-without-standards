@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.se.sws.Login">
+    tools:context="com.se.sws.LoginActivity"
+    android:background="@color/colorPrimaryDark_1">
 
 
 
@@ -19,7 +20,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorPrimaryDark_1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -39,7 +41,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="@font/ubuntu_regular" />
 
             <EditText
                 android:id="@+id/loginPassword"
@@ -53,7 +56,8 @@
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/loginEmail"
+                android:fontFamily="@font/ubuntu_regular"/>
 
             <Button
                 android:id="@+id/loginBtn"
@@ -62,10 +66,13 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="LOgin"
+                android:text="Login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/loginPassword"
+                android:fontFamily="@font/ubuntu_medium"
+                android:background="@drawable/background_post"
+                android:backgroundTint="@color/colorIcons"/>
 
             <Button
                 android:id="@+id/gotoRegister"
@@ -77,7 +84,10 @@
                 android:text="Create Account"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+                app:layout_constraintTop_toBottomOf="@+id/loginBtn"
+                android:fontFamily="@font/ubuntu_medium"
+                android:background="@drawable/background_post"
+                android:backgroundTint="@color/colorIcons"/>
 
             <ImageView
                 android:id="@+id/imageView"

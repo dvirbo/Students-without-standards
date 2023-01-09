@@ -70,5 +70,10 @@ dependencies {
 
     implementation 'javax.xml.stream:stax-api:1.0'
 
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    implementation 'com.github.bumptech.glide:glide:3'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+
 
 }
