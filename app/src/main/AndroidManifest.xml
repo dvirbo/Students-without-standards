@@ -10,6 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".searchPostActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".CommentsActivity"
             android:exported="false">
             <meta-data
@@ -53,13 +60,6 @@
         </activity>
         <activity
             android:name=".UniversitiesActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".RemoveProducts"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

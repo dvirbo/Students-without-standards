@@ -20,6 +20,8 @@ public class UniversitiesActivity extends AppCompatActivity {
     String uid;
     String UserName;
     String ins; // which institution to go after press Button
+    String from = "UniversitiesActivity";
+    String user_query = null;
 
     /*
     Here i've added a Button which will move me from certain screen to another screen
@@ -104,6 +106,9 @@ public class UniversitiesActivity extends AppCompatActivity {
         intent.putExtra("uid", uid);
         intent.putExtra("UserName", UserName);
         intent.putExtra("ins", ins);
+        intent.putExtra("desc", user_query);
+        intent.putExtra("from", from);
+
         startActivity(intent);
 
 

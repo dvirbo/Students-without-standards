@@ -26,7 +26,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.se.sws.Adapter.PostAdapter;
@@ -42,11 +41,12 @@ public class InstitutionsActivity extends AppCompatActivity {
     String current_uid;
     String post_author;
     String UserName;
-    String inst;
+    String inst = null;
+    String from;
+    String user_query;
     ImageView popupButton;
     private FirebaseAuth firebaseAuth;
     ArrayList<String> admins = new ArrayList<>();
-
 
 
     RecyclerView mRecyclerView; // For scrolling
@@ -76,9 +76,22 @@ public class InstitutionsActivity extends AppCompatActivity {
         post_author = _intent.getStringExtra("model_uid");
         UserName = _intent.getStringExtra("UserName");
         inst = _intent.getStringExtra("ins");
+        user_query = _intent.getStringExtra("desc"); // if the intent from search_post;
+        from = _intent.getStringExtra("from"); // where to go back in back arrow
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser(); // Will be used for representatives of each university
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        assert firebaseUser != null;
+        current_uid = firebaseUser.getUid();
+
 
         int layout = -1;
         int v = -1;
+
+        if (inst == null) {
+            inst = "BackUp";
+        }
 
         switch (inst) {
             case "AR":
@@ -109,24 +122,21 @@ public class InstitutionsActivity extends AppCompatActivity {
             case "heb":
                 layout = R.layout.activity_hebrew_uni;
                 v = R.id.imageAddPostMain_Heb;
+                break;
+            default:
+                layout = R.layout.backup;
+                v = R.id.imageAddPostMain_reicman;
         }
 
         setContentView(layout);
+
         View _view = findViewById(v); // We click on Ariel University board add post button ('(+)' button)
-
         mCreatePostsFab = (ImageView) _view;
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser(); // Will be used for representatives of each university
-        firebaseFirestore = FirebaseFirestore.getInstance();
-        current_uid = firebaseUser.getUid();
-
-        for (int i = 0; i < admins.size(); i++){
-            if (current_uid.equals(admins.get(i))){
+        for (int i = 0; i < admins.size(); i++) {
+            if (current_uid.equals(admins.get(i))) {
                 flag = true;
             }
         }
-        // Objects.requireNonNull(getSupportActionBar()).setTitle("Ariel Posts");
 
         ImageView imageAddItemMain = (ImageView) _view; //
         imageAddItemMain.setOnClickListener(view -> { // '+'
@@ -139,10 +149,26 @@ public class InstitutionsActivity extends AppCompatActivity {
         });
 
 
-        // Gets all the storage that goes under the path AR>All>items & sort the items by title
-        Query query = firebaseFirestore.collection("Universities").document(inst)
-                .collection("All")
-                .orderBy("title", Query.Direction.ASCENDING);
+        if (inst == null) {
+            inst = "BackUp";
+            System.out.println("inst:" + inst);
+
+        }
+        System.out.println("inst:" + inst);
+        System.out.println("user_query:");
+        System.out.println(user_query);
+
+
+        Query query;
+        if (user_query != null) { //check if there is a query from search_post screen
+            query = firebaseFirestore.collection("Universities").document(inst)
+                    .collection("All").orderBy("title", Query.Direction.ASCENDING).startAt("testing").endAt("testing" + "\uf8ff");
+        } else {
+            query = firebaseFirestore.collection("Universities").document(inst)
+                    .collection("All")
+                    .orderBy("title", Query.Direction.ASCENDING);
+        }
+
         // Connect the query above with the adapter declared on the start
         allUsersPosts = new FirestoreRecyclerOptions.Builder<Post>().setQuery(query, Post.class).build();
 
@@ -185,7 +211,7 @@ public class InstitutionsActivity extends AppCompatActivity {
                 if (!current_uid.equals(model.getUid())) {
                     popupButton.setVisibility(View.GONE);
                 }
-                if(flag){
+                if (flag) {
                     popupButton.setVisibility(View.VISIBLE);
                 }
 
@@ -287,8 +313,18 @@ public class InstitutionsActivity extends AppCompatActivity {
 
     // Returns to universities menu
     public void backUniversities(View view) {
-        Intent intent = new Intent(InstitutionsActivity.this, UniversitiesActivity.class);
+        Intent intent;
+        intent = new Intent(InstitutionsActivity.this, UniversitiesActivity.class); // back to UniversitiesActivity
         intent.putExtra("isAdmin", flag); // If the user who clicked on the posts is an admin or not
         startActivity(intent);
     }
+
+    public void backSearchPage(View view) {
+        Intent intent;
+        intent = new Intent(InstitutionsActivity.this, searchPostActivity.class); // back to search_post
+        intent.putExtra("isAdmin", flag); // If the user who clicked on the posts is an admin or not
+        startActivity(intent);
+
+    }
+
 }

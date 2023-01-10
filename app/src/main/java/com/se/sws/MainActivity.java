@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         // menu_search_button
         RelativeLayout search = findViewById(R.id.menu_search_button);
         search.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this ,search_post.class);
+            Intent intent = new Intent(MainActivity.this , searchPostActivity.class);
             intent.putExtra("isAdmin",flag);
             intent.putExtra("uid",uid);
             intent.putExtra("UserName", UserName);
