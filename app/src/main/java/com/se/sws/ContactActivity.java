@@ -45,6 +45,7 @@ public class ContactActivity extends AppCompatActivity {
                 A helper function which does whats writen in the function description below.
                  */
                 sendMail();
+
             }
         });
         /*
@@ -59,7 +60,7 @@ public class ContactActivity extends AppCompatActivity {
                 /*
                 Here it bring back the USER to the Universities page
                  */
-                Intent intent = new Intent(ContactActivity.this , UniversitiesActivity.class);
+                Intent intent = new Intent(ContactActivity.this , MainActivity.class);
                 startActivity(intent);
             }
         });
