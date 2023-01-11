@@ -192,4 +192,10 @@ class ContactActivity{
 
 ContactActivity <-- PostActivity
 
+
+class User{
+
+
+
+}
 @enduml
