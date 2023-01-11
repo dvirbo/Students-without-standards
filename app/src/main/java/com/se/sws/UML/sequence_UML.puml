@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+student -> Device: insert email & password
+Device -> DataBase: Authentication Request
+DataBase --> Device: Authentication Response
+student <- Device: log in successfully
+
+
+student -> Device: enter description in search bar
+Device -> DataBase: search data
+DataBase -> Device: get data
+student <- Device: show the result
+
+student -> Device: select post
+Device -> DataBase: ask for post data
+DataBase -> Device: get data
+student <- Device: show the result
+
+student -> Device: add like/comment to post
+Device -> DataBase: send request
+DataBase -> Device: like/ comment added
+student <- Device: show the result
+
+@enduml
