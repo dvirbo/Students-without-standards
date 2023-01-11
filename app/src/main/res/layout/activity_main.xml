@@ -83,7 +83,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="9dp"
-                android:src="@drawable/ic_email_read_24"
+                android:src="@drawable/googleg_standard_color_18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,7 +95,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="7dp"
                 android:layout_marginEnd="28dp"
-                android:text="Messages"
+                android:text="Contact us"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:fontFamily="@font/ubuntu_medium"/>

@@ -72,35 +72,33 @@ public class MainActivity extends AppCompatActivity {
 
 
         ImageView msg = findViewById(R.id.MenuMessageButtonImage);
-        if (!newMessage){
+/*        if (!newMessage){
             msg.setImageResource(R.drawable.ic_email_read_24);
             Toast.makeText(MainActivity.this,"No new messages!",Toast.LENGTH_SHORT).show();
         }else{
             msg.setImageResource(R.drawable.ic_email_unread_24);
             Toast.makeText(MainActivity.this,"New messages!",Toast.LENGTH_SHORT).show();
         }
-
-        /*
-         Add maybe?? vvv
+*/
 
 
-        Here i chose to move us using the Button to the Contact page
 
-        move1 = findViewById(R.id.contact);
+
+        //Here i chose to move us using the Button to the Contact page
+
+        //move1 = findViewById(R.id.contact);
         //Moves you to the Information page
-        move1.setOnClickListener(new View.OnClickListener() {
+        msg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Here how it actually moves us from the Universities class to the Contact class
 
-                Intent intent = new Intent(Universities.this ,Contact.class);
-                intent.putExtra("isAdmin",flag);
-                intent.putExtra("uid",uid);
+                //Here how it actually moves us from the Universities class to the Contact class
+
+                Intent intent = new Intent(MainActivity.this ,ContactActivity.class);
                 startActivity(intent);
             }
         });
-         */
+
     }
 
     /*
