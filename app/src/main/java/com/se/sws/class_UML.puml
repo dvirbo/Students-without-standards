@@ -1,0 +1,195 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+class LoginActivity{
+    + boolean flag = true;
+   - EditText email,password;
+    -Button loginBtn,gotoRegister;
+    -boolean valid = true;
+    - FirebaseAuth fAuth;
+    -FirebaseFirestore fStore;
+   - String userId;
+    -String UserName;
+    # void onCreate()
+    - void checkUserAccessLevel(String uid)
+     + void checkField(EditText textField)
+    # protected void onStart()
+}
+class registerActivity{
+   - EditText fullName, email, password, phone;
+    - Button registerBtn, goToLogin;
+    -boolean valid;
+    -FirebaseAuth fAuth;
+    - FirebaseFirestore fStore;
+    - CheckBox isAdminBox, isStudentBox;
+      +checkField(EditText textField);
+}
+LoginActivity -- registerActivity
+
+registerActivity -- MainActivity
+MainActivity -- LoginActivity
+class MainActivity{
+ -  boolean flag;
+  -  Intent _intent;
+   - boolean newMessage;
+    - RelativeLayout move1;
+    -String uid;
+    - String UserName;
+    # void onCreate(Bundle savedInstanceState)
+    + void onClick(View view);
+        + void logout(View view)
+        + void onBackPressed()
+}
+class InfoActivity{
+ - Button move2;
+    - String uid;
+    # void onCreate(Bundle savedInstanceState)
+ + void onClick(View view);
+}
+
+InfoActivity -- MainActivity
+
+class UniversitiesActivity{
+    -boolean flag;
+    -Intent _intent;
+    - Button move1;
+    - String uid;
+    - String UserName;
+    # void onCreate(Bundle savedInstanceState)
+ + void logoutAdmin(View view)
++ void UniversitiesBoard(View view)
+}
+UniversitiesActivity --> MainActivity
+
+
+
+class institutionsActivity{
+    - boolean flag;
+    - Intent _intent;
+    -ImageView mCreatePostsFab;
+    - String current_uid;
+    - String post_author;
+    - String UserName;
+    + RecyclerView mRecyclerView;
+   +  FirebaseUser firebaseUser;
+  +   FirebaseFirestore firebaseFirestore;
+   +  FirestoreRecyclerAdapter<Post, PostViewHolder> postAdapter
+  + FirestoreRecyclerOptions<Post> allUsersPosts
+   # void onCreate(Bundle savedInstanceState)
+   # void onStart()
+   # void onStop()
+   + void backAriel(View view)
+}
+institutionsActivity --> UniversitiesActivity
+
+class PostActivity{
+  +  EditText mCreateTitleOfPost, mCreateContentOfPost, mCreatePhoneOfPost;
+  + TextView mAuthorOfPost;
+   + ImageView mSavePost;
+   + FirebaseAuth firebaseAuth;
+    +FirebaseUser firebaseUser;
+    +FirebaseFirestore firebaseFirestore;
+    +Intent _intent;
+    + ProgressBar mProgressBarOfCreatePost;
+ + String uniName;
+  +  String uid;
+   + boolean flag;
+   # void onCreate(Bundle savedInstanceState)
+ + void backArrowAdd(View view)
+}
+PostActivity --> institutionsActivity
+
+class Post{
+   - String title;
+    - String content;
+    - String phone;
+    - String uid;
+     + Post()
+      + Post(String title, String content, String phone, String uid)
+      + String getTitle
+      +void setTitle(String title)
+      +String getContent(String content)
+      +String getPhone()
+      + void setPhone(String phone)
+      + void setPhone
+      + void setAuthor
+}
+
+class PostAdapter{
+    - String university;
+    - String current_uid;
+    - String model_uid;
+    - String noteId;
+    - Boolean flag;
+   - String s;
+     # void onCreate()
+    - void getComments()
+    - void isLikes()
+     - void nrLikes()
+    + void backArrow(View view)
+}
+Post <-- PostAdapter
+Post --> PostActivity
+
+class Comment{
+    - String comment;
+    - String publisher;
+    - String commentid;
+    + Comment(String comment, String publisher, String commentid()
+    + Comment()
+    + String getComment()
+    + void setComment()
+    + String getPublisher()
+    + void setPublisher(String publisher)
+    + String getCommentid()
+    + void setCommentid(String commentid)
+}
+PostActivity <-- Comment
+
+class CommentAdapter{
+    - Context mContext;
+    - List<Comment> mComment;
+    - String postid;
+    - boolean isAdmin;
+    - ArrayList<String> admins = new ArrayList<>();
+    - FirebaseUser firebaseUser;
+ + CommentAdapter(Context context, List<Comment> comments, String postid)
++ void onBindViewHolder(@NonNull final CommentAdapter.ImageViewHolder holder, final int position)
++ int getItemCount()
+ + ImageViewHolder
+ - void getUserInfo(final ImageView imageView, final TextView username, String model_uid)
+}
+
+Comment <-- CommentAdapter
+
+class searchPostActivity{
+    EditText institution, description;
+   + Button search;
+    + Button back;
+   + boolean flag;
+   + Intent _intent;
+   - String uid;
+   - String UserName;
+    - String description_user;
+   - String ins;
+  -  String from;
+
+# void onCreate(Bundle savedInstanceState)
+}
+
+searchPostActivity  <-- institutionsActivity
+
+ MainActivity <-- searchPostActivity
+
+class ContactActivity{
+ - EditText mEditTextSubject;
+    - EditText mEditTextMessage;
+    - Button move3;
+# void onCreate(Bundle savedInstanceState)
+- void sendMail()
+
+}
+
+ContactActivity <-- PostActivity
+
+@enduml
