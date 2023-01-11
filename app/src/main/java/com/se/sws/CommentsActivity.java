@@ -1,5 +1,6 @@
 package com.se.sws;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,7 +35,6 @@ import java.util.List;
  */
 public class CommentsActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     private CommentAdapter commentAdapter;
     private List<Comment> commentList;
 
@@ -68,7 +69,7 @@ public class CommentsActivity extends AppCompatActivity {
         postid = intent.getStringExtra("postid");
         publisherid = intent.getStringExtra("publisherid");
 
-        recyclerView = findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -119,6 +120,7 @@ public class CommentsActivity extends AppCompatActivity {
         hashMap.put("publisher", firebaseUser.getUid());
         hashMap.put("commentid", commentid);
 
+        assert commentid != null;
         reference.child(commentid).setValue(hashMap);
         addNotification();
         addcomment.setText("");
@@ -157,8 +159,9 @@ public class CommentsActivity extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Comments").child(postid);
 
         reference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 commentList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Comment comment = snapshot.getValue(Comment.class);
@@ -169,7 +172,7 @@ public class CommentsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

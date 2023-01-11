@@ -138,6 +138,7 @@ public class InstitutionsActivity extends AppCompatActivity {
             }
         }
 
+
         ImageView imageAddItemMain = (ImageView) _view; //
         imageAddItemMain.setOnClickListener(view -> { // '+'
             Intent intent = new Intent(getApplicationContext(), PostActivity.class);

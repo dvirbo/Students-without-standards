@@ -17,11 +17,11 @@ public class searchPostActivity extends AppCompatActivity {
     Button back;
     boolean flag;
     Intent _intent;
-    String uid;
-    String UserName;
-    String description_user;
-    String ins; // which institution to go after press Button
-    String from;
+    private String uid;
+    private String UserName;
+    private String description_user;
+    private String ins; // which institution to go after press Button
+    private  String from;
 
 
     @SuppressLint("MissingInflatedId")

@@ -28,7 +28,6 @@
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginEnd="@dimen/_30sdp"
-        android:background="@drawable/background_add_button"
         android:contentDescription="@string/app_name"
         android:padding="@dimen/_5sdp"
         android:src="@drawable/ic_add"
@@ -41,8 +40,6 @@
         android:id="@+id/postsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_2sdp"
-        android:layout_marginEnd="@dimen/_2sdp"
         android:clipToPadding="false"
         android:paddingStart="0dp"
         android:paddingEnd="@dimen/_12sdp"
@@ -50,7 +47,8 @@
         app:layout_constraintBottom_toTopOf="@id/layoutQuickActions"
         app:layout_constraintTop_toBottomOf="@id/back_button_heb"
 
-        />
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="2dp" />
 
     <LinearLayout
         android:id="@+id/layoutQuickActions"
