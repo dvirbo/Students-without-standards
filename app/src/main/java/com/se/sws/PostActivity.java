@@ -1,6 +1,10 @@
 package com.se.sws;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -78,6 +84,7 @@ public class PostActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser(); // Will be added later where we want to add representatives for each university
 
+
         /*
         * Gets the info from the filled fields (title, content & phone)
         */
@@ -113,7 +120,6 @@ public class PostActivity extends AppCompatActivity {
 
                 documentReference.set(note).addOnSuccessListener(aVoid -> {
                     Toast.makeText(getApplicationContext(), "Post Created Successfully", Toast.LENGTH_SHORT).show();
-                    
                     Intent intent; // Declare the intent once so we use it more efficiently instead of starting it every time we want to move into another university board
                     intent = new Intent(PostActivity.this, InstitutionsActivity.class);
                     mainData.set(note);

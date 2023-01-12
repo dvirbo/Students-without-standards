@@ -38,7 +38,7 @@ import java.util.Objects;
 import static android.content.ContentValues.TAG;
 
 /**
- * Whenever we extend a post we use this class
+ * Connects between FireStore database (Data tier) and Institutions Activity which is in the Presentation Tier
  */
 public class PostAdapter extends AppCompatActivity {
 
@@ -102,6 +102,7 @@ public class PostAdapter extends AppCompatActivity {
         System.out.println("isAdmin? " + flag);
         System.out.println("User id: " + current_uid);
         System.out.println("Model uid id: " + model_uid);
+        // User is admin or the author of the post
         if (flag || Objects.equals(current_uid, model_uid)){
             popupButton.setVisibility(View.VISIBLE); // reveal delete button
         }else{
@@ -157,11 +158,7 @@ public class PostAdapter extends AppCompatActivity {
         }
         );
 
-       // isLikes(noteId); Stuck here :\\\\\\\
-        /*
-        * Useful links - https://www.youtube.com/watch?v=B1NiPvfMbDM&ab_channel=KODDev likes system
-        *               https://www.youtube.com/watch?v=wQN2eCO-M_Q&ab_channel=CodingBunch chatroom
-        * */
+
         isLikes(noteId,likeButton);
         nrLikes(mLikes,noteId);
         getComments(noteId, comments);
@@ -169,7 +166,6 @@ public class PostAdapter extends AppCompatActivity {
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(postDetails.this,"Liked post!",Toast.LENGTH_SHORT).show();
                 if (likeButton.getTag().equals("like")){
                     FirebaseDatabase.getInstance().getReference().child("Likes")
                             .child(noteId)
