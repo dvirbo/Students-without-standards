@@ -157,7 +157,9 @@
         android:layout_marginStart="342dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="37dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        android:visibility="gone"
+        />
 
     <ImageView
         android:id="@+id/likeBtn"
