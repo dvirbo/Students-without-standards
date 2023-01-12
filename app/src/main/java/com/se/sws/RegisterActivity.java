@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                         userInfo.put("isUser", "1");
                     }
 
-                    df.set(userInfo);
+                    df.set(userInfo); // add to DB ref the info
                     Intent _intent;
                     _intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(_intent);
@@ -107,7 +107,6 @@ public class RegisterActivity extends AppCompatActivity {
         goToLogin.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), LoginActivity.class)));
 
     }
-
 
 
     /**
