@@ -163,8 +163,9 @@ public class InstitutionsActivity extends AppCompatActivity {
         Query query;
         if (user_query != null) { //check if there is a query from search_post screen
             query = firebaseFirestore.collection("Universities").document(inst)
-                    .collection("All").orderBy("title", Query.Direction.ASCENDING).startAt("testing").endAt("testing" + "\uf8ff");
-        } else {
+                    .collection("All").orderBy("title", Query.Direction.ASCENDING).startAt(user_query).endAt(user_query + "\uf8ff");
+        }
+        else {
             query = firebaseFirestore.collection("Universities").document(inst)
                     .collection("All")
                     .orderBy("title", Query.Direction.ASCENDING);
@@ -247,6 +248,9 @@ public class InstitutionsActivity extends AppCompatActivity {
                                         }
 
                                     });
+                                    DocumentReference refBackUp = firebaseFirestore.collection("Universities").document("BackUp").collection("All").document(docId);
+                                    refBackUp.delete();
+
                                 }
                             });
                             // Do nothing when "no" is pressed

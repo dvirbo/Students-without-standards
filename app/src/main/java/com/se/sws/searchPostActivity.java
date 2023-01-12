@@ -63,7 +63,7 @@ public class searchPostActivity extends AppCompatActivity {
                             case "ben gurion":
                                 ins = "BGU";
                                 break;
-                            case "Haifa":
+                            case "haifa":
                                 ins = "Haifa";
                                 break;
                             case "Reicman":
